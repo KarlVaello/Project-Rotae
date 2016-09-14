@@ -1,8 +1,25 @@
+/*
+   Project Rotae  Copyright (C) 2016  Carlos Vaello
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include <UTFT.h>
 #include <URTouch.h>
 #include <URTouchCD.h>
 //#include <UTFT_Buttons.h>
-
+#include "Configuration.h"
 
 #include "TinyGPS++.h"
 TinyGPSPlus gps;
@@ -51,7 +68,7 @@ bool cycling = true;
 
 // CranksetGear
 int currentCranksetGear = 2;
-int MAX_CranksetGear = 2;
+//int MAX_CranksetGear = 2;
 
 const int UP_SHIFT_CranksetGear = 12;
 int UP_SHIFT_CranksetGear_STATE = 0;
@@ -60,7 +77,7 @@ int DOWN_SHIFT_CranksetGear_STATE = 0;
 
 
 int currentCassetteGear = 0;
-int MAX_CassetteGear = 8;
+//int MAX_CassetteGear = 8;
 
 int currentSpeed = 0;
 
