@@ -15,25 +15,40 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/*
-  Este fichechor header contiene las variables que manejara la clase principal.
-  Debe almacenar todas las varaibles que puedan ser configurables por el usuario.
 
-*/
-
-
-#ifndef Configuration
-#define Configuration
+#ifndef Display_H
+#define Display_H
 
 #include <Arduino.h>
+#include "LiveData.h"
+#include <UTFT.h>
+#include <URTouch.h>
+#include <URTouchCD.h>
 
+//#include <UTFT_Buttons.h>
+LiveData ld;
 
-#define mainSerialBaudrate 9600
-#define gpsSerialBaudrate 9600
-#define bluetoothSerialBaudrate 9600
+UTFT lcd(ILI9481, 38, 39, 40, 41);
+URTouch tactil(6, 5, 4, 3, 2);
+//UTFT_Buttons myButtons(&lcd, &tactil);
 
+// Declare which fonts we will be using
+extern uint8_t BigFont[];
+extern uint8_t SmallFont[];
+extern uint8_t arial_bold[];
+extern uint8_t various_symbols[];
+extern uint8_t CalibriBold32x48[];
+extern uint8_t SevenSeg_XXXL_Num[];
+extern uint8_t SevenSegNumFontPlus[];
+extern uint8_t ArialNumFontPlus[];
+extern uint8_t OCR_A_Extended_M[];
 
-#define  MAX_CranksetGear 2
-#define  MAX_CassetteGear 11
+class Display {
+  public:
+    Display();
+    ~Display();
+    void DisplayUI();
+    void DisplayInit();
+};
 
 #endif

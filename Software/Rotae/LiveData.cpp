@@ -15,25 +15,36 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/*
-  Este fichechor header contiene las variables que manejara la clase principal.
-  Debe almacenar todas las varaibles que puedan ser configurables por el usuario.
+int currentSpeed = 0;
 
-*/
-
-
-#ifndef Configuration
-#define Configuration
-
-#include <Arduino.h>
+// TIME VARIABLES
+int m, mu = 0, md = 0;                     //Declaramos las variables que vamos a usar
+int s, su = 0, sd = 0;
+int l, lu = 0, ld = 0, lc = 0;
+long int tiempo, inicio;
 
 
-#define mainSerialBaudrate 9600
-#define gpsSerialBaudrate 9600
-#define bluetoothSerialBaudrate 9600
+//<<constructor>> setup the LED, make pin 13 an OUTPUT
+LiveData::LiveData() {
+}
+
+//<<destructor>>
+LiveData::~LiveData() {
+  /*nothing to destruct*/
+}
+
+void int getCurrentSpeed() {
+  return  currentSpeed;
+}
+void setCurrentSpeed(int currentSpeed) {
+  this.currentSpeed = currentSpeed;
+}
+
+void int getLu() {
+  return  lu;
+}
+void setLu(int lu) {
+  this.lu = lu;
+}
 
 
-#define  MAX_CranksetGear 2
-#define  MAX_CassetteGear 11
-
-#endif
