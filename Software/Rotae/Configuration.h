@@ -22,6 +22,10 @@
 #include <Arduino.h>
 
 
+#define mainSerialBaudrate 9600
+#define gpsSerialBaudrate 9600
+#define bluetoothSerialBaudrate 9600
+
 
 #define MAX_CranksetGear 2
 #define MAX_CassetteGear 11

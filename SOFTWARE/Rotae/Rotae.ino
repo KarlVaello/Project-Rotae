@@ -60,7 +60,6 @@ long int tiempo, inicio;
 float distanceTraveled_M_Complete = 1.45f; //distance traveled metros
 int distanceTraveled_KM = 0; //distance traveled metros
 int distanceTraveled_M = 0 ; //distance traveled metros
-bool cycling = true;
 
 
 //############ GEARS VARIABLES ###########
@@ -69,12 +68,6 @@ bool cycling = true;
 // CranksetGear
 int currentCranksetGear = 2;
 //int MAX_CranksetGear = 2;
-
-const int UP_SHIFT_CranksetGear = 12;
-int UP_SHIFT_CranksetGear_STATE = 0;
-const int DOWN_SHIFT_CranksetGear = 11;
-int DOWN_SHIFT_CranksetGear_STATE = 0;
-
 
 int currentCassetteGear = 0;
 //int MAX_CassetteGear = 8;
@@ -91,15 +84,11 @@ String inputDataString;
 
 void setup()
 {
-  Serial.begin(9600);      // open the serial port at 9600 bps:
-  Serial1.begin(9600);
-  Serial3.begin(9600);
+  Serial.begin(mainSerialBaudrate);      // open the serial port at 9600 bps:
+  Serial1.begin(bluetoothSerialBaudrate);
+  Serial3.begin(gpsSerialBaudrate);
 
   //Pin MODES
-  pinMode(UP_SHIFT_CranksetGear, INPUT);
-  pinMode(DOWN_SHIFT_CranksetGear, INPUT);
-
-
   lcd.InitLCD(PORTRAIT);
   lcd.clrScr();
   tactil.InitTouch(PORTRAIT);
