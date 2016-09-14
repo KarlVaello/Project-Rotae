@@ -22,10 +22,25 @@ class LiveData {
   public:
     LiveData();
     ~LiveData();
-    void int getCurrentSpeed();
+
+    int getCurrentSpeed();
     void setCurrentSpeed(int currentSpeed);
-    void int getLu();
+
+    int getLu();
     void setLu(int lu);
+
+    int getCurrentCranksetGear();
+    void setCurrentCranksetGear(int gear);
+    
+    int getCurrentCassetteGear();
+    void setCurrentCassetteGear(int gear);
+
+    bool getCassetteShifterOnLine();
+    void setCassetteShifterOnLine(bool OnLine);
+    
+    int getCassetteShifterOnLine_LAST_TIME();
+    void setCassetteShifterOnLine_LAST_TIME(int LAST_TIME);
+
 };
 
 

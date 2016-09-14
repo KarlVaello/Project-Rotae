@@ -24,30 +24,17 @@
 #include <UTFT.h>
 #include <URTouch.h>
 #include <URTouchCD.h>
-
 //#include <UTFT_Buttons.h>
-LiveData ld;
 
-UTFT lcd(ILI9481, 38, 39, 40, 41);
-URTouch tactil(6, 5, 4, 3, 2);
+
 //UTFT_Buttons myButtons(&lcd, &tactil);
 
-// Declare which fonts we will be using
-extern uint8_t BigFont[];
-extern uint8_t SmallFont[];
-extern uint8_t arial_bold[];
-extern uint8_t various_symbols[];
-extern uint8_t CalibriBold32x48[];
-extern uint8_t SevenSeg_XXXL_Num[];
-extern uint8_t SevenSegNumFontPlus[];
-extern uint8_t ArialNumFontPlus[];
-extern uint8_t OCR_A_Extended_M[];
 
 class Display {
   public:
     Display();
     ~Display();
-    void DisplayUI();
+    void DisplayUI(LiveData ld);
     void DisplayInit();
 };
 

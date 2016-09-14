@@ -14,6 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#include "LiveData.h"
 
 int currentSpeed = 0;
 
@@ -23,6 +24,11 @@ int s, su = 0, sd = 0;
 int l, lu = 0, ld = 0, lc = 0;
 long int tiempo, inicio;
 
+int currentCranksetGear = 0;
+int currentCassetteGear = 0;
+
+bool cassetteShifterOnLine = false;
+int cassetteShifterOnLine_LAST_TIME = 0;
 
 //<<constructor>> setup the LED, make pin 13 an OUTPUT
 LiveData::LiveData() {
@@ -33,18 +39,48 @@ LiveData::~LiveData() {
   /*nothing to destruct*/
 }
 
-void int getCurrentSpeed() {
+int LiveData::getCurrentSpeed() {
   return  currentSpeed;
 }
-void setCurrentSpeed(int currentSpeed) {
-  this.currentSpeed = currentSpeed;
+void LiveData::setCurrentSpeed(int currentSpeed_IN) {
+  currentSpeed = currentSpeed_IN;
 }
 
-void int getLu() {
+int LiveData::getLu() {
   return  lu;
 }
-void setLu(int lu) {
-  this.lu = lu;
+
+void LiveData::setLu(int lu_IN) {
+  lu = lu_IN;
 }
 
+int LiveData::getCurrentCranksetGear() {
+  return currentCranksetGear;
+}
+void LiveData::setCurrentCranksetGear(int gear) {
+  currentCranksetGear = gear;
+}
+
+int LiveData::getCurrentCassetteGear() {
+  return currentCassetteGear;
+}
+void LiveData::setCurrentCassetteGear(int gear) {
+  currentCassetteGear = gear;
+}
+
+
+bool LiveData::getCassetteShifterOnLine() {
+  return cassetteShifterOnLine;
+}
+void LiveData::setCassetteShifterOnLine(bool onLine) {
+  cassetteShifterOnLine = onLine;
+}
+
+int LiveData::getCassetteShifterOnLine_LAST_TIME() {
+  return cassetteShifterOnLine_LAST_TIME;
+}
+
+void LiveData::setCassetteShifterOnLine_LAST_TIME(int LAST_TIME) {
+  cassetteShifterOnLine_LAST_TIME = LAST_TIME;
+}
 

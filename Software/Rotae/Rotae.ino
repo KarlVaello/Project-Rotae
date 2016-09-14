@@ -19,11 +19,14 @@
 
 #include "Configuration.h"
 #include "Display.h"
+#include "LiveData.h"
 
 #include "TinyGPS++.h"
+
 TinyGPSPlus gps;
 
 Display dp;
+LiveData ldata;
 
 
 float ltd, lon;
@@ -33,30 +36,14 @@ double alt;
 long x, y;
 int pantalla;
 
-
-
-
+int state = 0;
+char dato = ' ';
 // DISTANCE VARIABLES
+
 float distanceTraveled_M_Complete = 1.45f; //distance traveled metros
 int distanceTraveled_KM = 0; //distance traveled metros
 int distanceTraveled_M = 0 ; //distance traveled metros
 
-
-//############ GEARS VARIABLES ###########
-
-
-// CranksetGear
-int currentCranksetGear = 2;
-//int MAX_CranksetGear = 2;
-
-int currentCassetteGear = 0;
-//int MAX_CassetteGear = 8;
-
-
-//################ INPUT DATA ##############
-bool cassetteShifterOnLine = false;
-int cassetteShifterOnLine_LAST_TIME = 0;
-int cassetteShifterOnLine_MAX_TIME = 8000;
 
 String inputDataString;
 
@@ -71,11 +58,6 @@ void setup()
 
 }
 
-int state = 0;
-
-
-
-char dato = ' ';
 
 void loop()
 {
@@ -98,32 +80,31 @@ void loop()
 
 
 
-  tiempo = millis() - inicio;        //Calculamos el tiempo que paso desde que se activo el sensor start/stop
+  /*tiempo = millis() - inicio;        //Calculamos el tiempo que paso desde que se activo el sensor start/stop
 
-  m = (tiempo / 1000) / 60;           //Calculamos los minutos
-  mu = m % 10;                        //Descomponemos los minutos y sacamos el valor de las unidades
-  md = (m - mu) / 10;                 //Descomponemos los minutos y sacamos el valor de las decenas
+    m = (tiempo / 1000) / 60;           //Calculamos los minutos
+    mu = m % 10;                        //Descomponemos los minutos y sacamos el valor de las unidades
+    md = (m - mu) / 10;                 //Descomponemos los minutos y sacamos el valor de las decenas
 
-  s = (tiempo / 1000) % 60;           //Calculamos los segundos
-  su = s % 10;                        //Descomponemos los segundos y sacamos el valor de las unidades
-  sd = (s - su) / 10;                 //Descomponemos los segundos y sacamos el valor de las decenas
+    s = (tiempo / 1000) % 60;           //Calculamos los segundos
+    su = s % 10;                        //Descomponemos los segundos y sacamos el valor de las unidades
+    sd = (s - su) / 10;                 //Descomponemos los segundos y sacamos el valor de las decenas
 
-  l = (tiempo % 1000);                //Calculamos las milesimas de segundo
-  lu = l % 10;                        //Descomponemos las milesimas y sacamos el valor de las unidades
-  ld = ((l - lu) / 10) % 10;          //Descomponemos las milesimas y sacamos el valor de las decenas
-  lc = (l - (ld * 10) - lu) / 100;    //Descomponemos las milesimas y sacamos el valor de las centenas
+    l = (tiempo % 1000);                //Calculamos las milesimas de segundo
+    lu = l % 10;                        //Descomponemos las milesimas y sacamos el valor de las unidades
+    ld = ((l - lu) / 10) % 10;          //Descomponemos las milesimas y sacamos el valor de las decenas
+    lc = (l - (ld * 10) - lu) / 100;    //Descomponemos las milesimas y sacamos el valor de las centenas*/
 
-  dp.DisplayUI();
+  dp.DisplayUI(ldata);
   smartDelay(1000);
-  onlineStatusPerifericalCheck();
+  //onlineStatusPerifericalCheck();
 
 }
 
 
 void onlineStatusPerifericalCheck() {
-
-  if (millis() > cassetteShifterOnLine_LAST_TIME + cassetteShifterOnLine_MAX_TIME) {
-    cassetteShifterOnLine = false;
+  if (millis() > ldata.getCassetteShifterOnLine_LAST_TIME() + cassetteShifterOnLine_MAX_TIME) {
+    ldata.setCassetteShifterOnLine(false);
   }
 
 }
@@ -132,12 +113,12 @@ void inputProcessing(String input) {
   Serial.println(input);
   switch (input.charAt(0)) {
     case'0': //VELOCIMETER
-      velocimeter(input);
+      //velocimeter(input);
       break;
     case '1': //CASSETTE
       cassetteShiffeter(input.charAt(2));
-      cassetteShifterOnLine = true;
-      cassetteShifterOnLine_LAST_TIME = millis();
+      ldata.setCassetteShifterOnLine(true);
+      ldata.setCassetteShifterOnLine_LAST_TIME(millis());
       break;
     case '2': //Crank
 
@@ -149,16 +130,16 @@ void inputProcessing(String input) {
 void cassetteShiffeter(char input) {
   switch (input) {
     case '0': //gear down
-      if (currentCassetteGear > 1) {
-        currentCassetteGear--;
+      if (ldata.getCurrentCassetteGear() > 1) {
+        ldata.setCurrentCassetteGear(ldata.getCurrentCassetteGear() - 1 );
       }
-      cassetteShifterOnLine_LAST_TIME = millis();
+      ldata.setCassetteShifterOnLine_LAST_TIME(millis());
       break;
     case '1': //gear up
-      if (currentCassetteGear < MAX_CassetteGear) {
-        currentCassetteGear++;
+      if (ldata.getCurrentCassetteGear() < MAX_CassetteGear) {
+        ldata.setCurrentCassetteGear(ldata.getCurrentCassetteGear() + 1);
       }
-      cassetteShifterOnLine_LAST_TIME = millis();
+      ldata.setCassetteShifterOnLine_LAST_TIME(millis());
       break;
     default:
       //nothing

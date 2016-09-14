@@ -17,13 +17,27 @@
 
 
 #include "Display.h" //include the declaration for this class
-#include "LiveData.h"
+#include "Configuration.h"
 
+UTFT lcd(ILI9481, 38, 39, 40, 41);
+URTouch tactil(6, 5, 4, 3, 2);
 
+// Declare which fonts we will be using
+extern uint8_t BigFont[];
+extern uint8_t SmallFont[];
+extern uint8_t arial_bold[];
+extern uint8_t various_symbols[];
+extern uint8_t CalibriBold32x48[];
+extern uint8_t SevenSeg_XXXL_Num[];
+extern uint8_t SevenSegNumFontPlus[];
+extern uint8_t ArialNumFontPlus[];
+extern uint8_t OCR_A_Extended_M[];
 
 
 
 //<<constructor>> setup the LED, make pin 13 an OUTPUT
+
+
 Display::Display() {
 }
 
@@ -45,7 +59,7 @@ void Display::DisplayInit() {
 }
 
 //turn the LED on
-void Display::DisplayUI() {
+void Display::DisplayUI(LiveData ld) {
   //##### SPEED PRINT #########
   lcd.setFont(SevenSeg_XXXL_Num);
   lcd.setBackColor(210, 215, 211);
@@ -60,8 +74,8 @@ void Display::DisplayUI() {
   lcd.setFont(OCR_A_Extended_M);
   lcd.setBackColor(210, 215, 211);
   lcd.setColor(32, 73, 120);
-  if (currentCranksetGear + 1 <= MAX_CranksetGear) {
-    lcd.print(String(currentCranksetGear + 1 ), 36, 45);
+  if (ld.getCurrentCranksetGear() + 1 <= MAX_CranksetGear) {
+    lcd.print(String(ld.getCurrentCranksetGear() + 1 ), 36, 45);
   } else {
     lcd.print(" ", 36, 45);
   }
@@ -71,22 +85,22 @@ void Display::DisplayUI() {
   lcd.setFont(SevenSegNumFontPlus);
   lcd.setBackColor(210, 215, 211);
   lcd.setColor(32, 73, 120);
-  lcd.print(String(currentCranksetGear), 30, 75);
+  lcd.print(String(ld.getCurrentCranksetGear()), 30, 75);
 
   lcd.drawLine(35, 130, 55, 130);
 
   lcd.setFont(OCR_A_Extended_M);
   lcd.setBackColor(210, 215, 211);
   lcd.setColor(32, 73, 120);
-  if (currentCranksetGear - 1 >= 1) {
-    lcd.print(String(currentCranksetGear - 1  ), 36, 135);
+  if (ld.getCurrentCranksetGear() - 1 >= 1) {
+    lcd.print(String(ld.getCurrentCranksetGear() - 1  ), 36, 135);
   } else {
     lcd.print(" ", 36, 135);
   }
 
 
   //##### CASSETTE GEARS PRINT #########
-  if (cassetteShifterOnLine) {
+  if (ld.getCassetteShifterOnLine()) {
     lcd.setColor(0, 200, 0);
 
   } else {
@@ -97,8 +111,8 @@ void Display::DisplayUI() {
   lcd.setFont(OCR_A_Extended_M);
   lcd.setBackColor(210, 215, 211);
   lcd.setColor(32, 73, 120);
-  if (currentCassetteGear + 1 <= MAX_CassetteGear) {
-    lcd.print(String(currentCassetteGear + 1 ), 261, 45);
+  if (ld.getCurrentCassetteGear() + 1 <= MAX_CassetteGear) {
+    lcd.print(String(ld.getCurrentCassetteGear() + 1 ), 261, 45);
   } else {
     lcd.print(" ", 261, 45);
   }
@@ -108,15 +122,15 @@ void Display::DisplayUI() {
   lcd.setFont(SevenSegNumFontPlus);
   lcd.setBackColor(210, 215, 211);
   lcd.setColor(32, 73, 120);
-  lcd.print(String(currentCassetteGear), 255, 75);
+  lcd.print(String(ld.getCurrentCassetteGear()), 255, 75);
 
   lcd.drawLine(260, 130, 280, 130);
 
   lcd.setFont(OCR_A_Extended_M);
   lcd.setBackColor(210, 215, 211);
   lcd.setColor(32, 73, 120);
-  if (currentCassetteGear - 1 >= 1) {
-    lcd.print(String(currentCassetteGear - 1  ), 261, 135);
+  if (ld.getCurrentCassetteGear() - 1 >= 1) {
+    lcd.print(String(ld.getCurrentCassetteGear() - 1  ), 261, 135);
   } else {
     lcd.print(" ", 261, 135);
   }
@@ -124,50 +138,50 @@ void Display::DisplayUI() {
 
   //GPS
 
-  lcd.setFont(OCR_A_Extended_M);
-  lcd.setBackColor(210, 215, 211);
-  lcd.setColor(32, 73, 120);
-  lcd.print(String(ltd), 70, 200);
+  /*lcd.setFont(OCR_A_Extended_M);
+    lcd.setBackColor(210, 215, 211);
+    lcd.setColor(32, 73, 120);
+    lcd.print(String(ltd), 70, 200);
 
-  lcd.setFont(OCR_A_Extended_M);
-  lcd.setBackColor(210, 215, 211);
-  lcd.setColor(32, 73, 120);
-  lcd.print(String(lon), 70, 240);
-
-
-
-  lcd.setFont(OCR_A_Extended_M);
-  lcd.setBackColor(210, 215, 211);
-  lcd.setColor(32, 73, 120);
-  lcd.print(String(alt), 200, 200);
+    lcd.setFont(OCR_A_Extended_M);
+    lcd.setBackColor(210, 215, 211);
+    lcd.setColor(32, 73, 120);
+    lcd.print(String(lon), 70, 240);
 
 
-  //DISTANCE
-  lcd.drawLine(10, 310, 310, 310);
-  lcd.setFont(CalibriBold32x48);
-  lcd.print(String(distanceTraveled_KM), 70, 320);
-  lcd.fillRect(142, 356, 148, 362);
-  lcd.print(String(distanceTraveled_M), 160, 320);
-  lcd.setFont(arial_bold);
-  lcd.setBackColor(210, 215, 211);
-  lcd.print("km", CENTER, 375);
-  lcd.drawLine(10, 175, 310, 175);
-  lcd.drawLine(10, 400, 310, 400);
 
-  lcd.setFont(CalibriBold32x48);
-  lcd.print(String(md), 18, 410);                      //Imprimimos los valores en el display
-  lcd.print(String(mu), 50, 410);
-  lcd.setFont(ArialNumFontPlus);
-  lcd.print(":", 82, 410);
-  lcd.setFont(CalibriBold32x48);
-  lcd.print(String(sd), 114, 410);
-  lcd.print(String(su), 146, 410);
-  lcd.setFont(ArialNumFontPlus);
-  lcd.print(":", 178, 410);
-  lcd.setFont(CalibriBold32x48);
-  lcd.print(String(lc), 210, 410);
-  lcd.print(String(ld), 242, 410);
-  lcd.print(String(ld.getLu()), 274, 410);
+    lcd.setFont(OCR_A_Extended_M);
+    lcd.setBackColor(210, 215, 211);
+    lcd.setColor(32, 73, 120);
+    lcd.print(String(alt), 200, 200);*/
+
+
+  /* //DISTANCE
+    lcd.drawLine(10, 310, 310, 310);
+    lcd.setFont(CalibriBold32x48);
+    lcd.print(String(distanceTraveled_KM), 70, 320);
+    lcd.fillRect(142, 356, 148, 362);
+    lcd.print(String(distanceTraveled_M), 160, 320);
+    lcd.setFont(arial_bold);
+    lcd.setBackColor(210, 215, 211);
+    lcd.print("km", CENTER, 375);
+    lcd.drawLine(10, 175, 310, 175);
+    lcd.drawLine(10, 400, 310, 400);
+
+    lcd.setFont(CalibriBold32x48);
+    lcd.print(String(md), 18, 410);                      //Imprimimos los valores en el display
+    lcd.print(String(mu), 50, 410);
+    lcd.setFont(ArialNumFontPlus);
+    lcd.print(':', 82, 410);
+    lcd.setFont(CalibriBold32x48);
+    lcd.print(String(sd), 114, 410);
+    lcd.print(String(su), 146, 410);
+    lcd.setFont(ArialNumFontPlus);
+    lcd.print(':', 178, 410);
+    lcd.setFont(CalibriBold32x48);
+    lcd.print(String(lc), 210, 410);
+    lcd.print(String(ld), 242, 410);
+    lcd.print(String(ld.getLu()), 274, 410);*/
 }
 
 

@@ -36,4 +36,7 @@
 #define  MAX_CranksetGear 2
 #define  MAX_CassetteGear 11
 
+
+#define cassetteShifterOnLine_MAX_TIME 8000
+
 #endif
