@@ -31,17 +31,27 @@ class LiveData {
 
     int getCurrentCranksetGear();
     void setCurrentCranksetGear(int gear);
-    
+
     int getCurrentCassetteGear();
     void setCurrentCassetteGear(int gear);
 
     bool getCassetteShifterOnLine();
     void setCassetteShifterOnLine(bool OnLine);
-    
+
     int getCassetteShifterOnLine_LAST_TIME();
     void setCassetteShifterOnLine_LAST_TIME(int LAST_TIME);
+
+    float getLtd();
+    void setLtd(float latitude);
+
+    float getLon();
+    void setLon(float longitude);
+
+    double getAlt();
+    void setAlt(double altitu);
 
 };
 
 
 #endif
+

@@ -135,28 +135,24 @@ void Display::DisplayUI(LiveData ld) {
     lcd.print(" ", 261, 135);
   }
 
-
   //GPS
+  lcd.setFont(OCR_A_Extended_M);
+  lcd.setBackColor(210, 215, 211);
+  lcd.setColor(32, 73, 120);
+  lcd.print(String(ld.getLtd()), 70, 200);
 
-  /*lcd.setFont(OCR_A_Extended_M);
-    lcd.setBackColor(210, 215, 211);
-    lcd.setColor(32, 73, 120);
-    lcd.print(String(ltd), 70, 200);
+  lcd.setFont(OCR_A_Extended_M);
+  lcd.setBackColor(210, 215, 211);
+  lcd.setColor(32, 73, 120);
+  lcd.print(String(ld.getLon()), 70, 240);
 
-    lcd.setFont(OCR_A_Extended_M);
-    lcd.setBackColor(210, 215, 211);
-    lcd.setColor(32, 73, 120);
-    lcd.print(String(lon), 70, 240);
+  lcd.setFont(OCR_A_Extended_M);
+  lcd.setBackColor(210, 215, 211);
+  lcd.setColor(32, 73, 120);
+  lcd.print(String(ld.getAlt()), 200, 200);
 
-
-
-    lcd.setFont(OCR_A_Extended_M);
-    lcd.setBackColor(210, 215, 211);
-    lcd.setColor(32, 73, 120);
-    lcd.print(String(alt), 200, 200);*/
-
-
-  /* //DISTANCE
+  //DISTANCE
+  /*
     lcd.drawLine(10, 310, 310, 310);
     lcd.setFont(CalibriBold32x48);
     lcd.print(String(distanceTraveled_KM), 70, 320);
@@ -166,9 +162,9 @@ void Display::DisplayUI(LiveData ld) {
     lcd.setBackColor(210, 215, 211);
     lcd.print("km", CENTER, 375);
     lcd.drawLine(10, 175, 310, 175);
-    lcd.drawLine(10, 400, 310, 400);
+    lcd.drawLine(10, 400, 310, 400);*/
 
-    lcd.setFont(CalibriBold32x48);
+  /*lcd.setFont(CalibriBold32x48);
     lcd.print(String(md), 18, 410);                      //Imprimimos los valores en el display
     lcd.print(String(mu), 50, 410);
     lcd.setFont(ArialNumFontPlus);

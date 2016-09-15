@@ -47,14 +47,12 @@ void setup()
   pinMode(DOWN_SHIFT_CassetteGear, INPUT);
   pinMode(ledPin, OUTPUT);
   BTSerial.println("1;A");
-
 }
 
 void loop()
 {
 
   currentMillis = millis();
-
 
   UP_SHIFT_CassetteGear_STATE = digitalRead(UP_SHIFT_CassetteGear);
   DOWN_SHIFT_CassetteGear_STATE = digitalRead(DOWN_SHIFT_CassetteGear);
@@ -81,16 +79,9 @@ void loop()
   }
   DOWN_SHIFT_CassetteGear_LASTSTATE = DOWN_SHIFT_CassetteGear_STATE;
 
-
   if(currentMillis - awake_LAST_TIME >= awake_RESENT_TIME) {
     BTSerial.write("1;A\n");
     Serial.println("1;A");
     awake_LAST_TIME = currentMillis;   
   }
-
-
-
-
-
-
 }

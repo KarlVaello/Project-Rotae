@@ -20,14 +20,14 @@
 #define Display_H
 
 #include <Arduino.h>
-#include "LiveData.h"
 #include <UTFT.h>
 #include <URTouch.h>
 #include <URTouchCD.h>
 //#include <UTFT_Buttons.h>
 
+#include "LiveData.h"
 
-//UTFT_Buttons myButtons(&lcd, &tactil);
+
 
 
 class Display {
@@ -39,3 +39,4 @@ class Display {
 };
 
 #endif
+
