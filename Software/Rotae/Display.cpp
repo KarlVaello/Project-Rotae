@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/*
    @file Display.cpp
    @brief Contains everithing related to display
    @author Carlos Vaello
@@ -52,7 +52,7 @@ Display::~Display() {
 }
 
 
-/**
+/*
   Control init isplay at star on setup arduino function.
   This set up somo importand display config
 */
@@ -67,8 +67,7 @@ void Display::DisplayInit() {
   tactil.setPrecision(PREC_MEDIUM);
 }
 
-
-/**
+/*
   Control canvas display
 
   @param ld is the current LiveData running.
@@ -165,6 +164,12 @@ void Display::DisplayUI(LiveData ld, Chrono ch) {
   lcd.setFont(OCR_A_Extended_M);
   lcd.setBackColor(210, 215, 211);
   lcd.setColor(32, 73, 120);
+  lcd.print(String(ld.getLon()), 70, 240);
+
+  lcd.setFont(OCR_A_Extended_M);
+  lcd.setBackColor(210, 215, 211);
+  lcd.setColor(32, 73, 120);
+
   lcd.print(String(ld.getAlt()), 200, 200);
 
   //DISTANCE

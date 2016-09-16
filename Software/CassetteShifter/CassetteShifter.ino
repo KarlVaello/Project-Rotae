@@ -1,20 +1,20 @@
-// Basic bluetooth test sketch. HC-06_01_9600
-// HC-06 ZS-040
-//
-//
-//  Uses hardware serial to talk to the host computer and software serial for communication with the bluetooth module
-//
-//  Pins
-//  BT VCC to Arduino 5V out.
-//  BT GND to GND
-//  BT RX to Arduino pin 3 (through a voltage divider)
-//  BT TX to Arduino pin 2 (no need voltage divider)
-//
-//  When a command is entered in the serial monitor on the computer
-//  the Arduino will relay it to the bluetooth module and display the result.
-//
-//  These HC-06 modules require capital letters and no line ending
-//
+/*
+   Project Rotae  Copyright (C) 2016  Carlos Vaello
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 const int DOWN_SHIFT_CassetteGear = 11;
 int DOWN_SHIFT_CassetteGear_STATE = 0;
 int DOWN_SHIFT_CassetteGear_LASTSTATE = 0;
@@ -37,7 +37,6 @@ void setup()
   Serial.begin(9600);
   Serial.println("Arduino with HC-05 is ready");
 
-  // HC-06 default baud rate is 9600
   BTSerial.begin(9600);
   Serial.println("BTserial started at 9600");
 
@@ -47,14 +46,11 @@ void setup()
   pinMode(DOWN_SHIFT_CassetteGear, INPUT);
   pinMode(ledPin, OUTPUT);
   BTSerial.println("1;A");
-
 }
 
 void loop()
 {
-
   currentMillis = millis();
-
 
   UP_SHIFT_CassetteGear_STATE = digitalRead(UP_SHIFT_CassetteGear);
   DOWN_SHIFT_CassetteGear_STATE = digitalRead(DOWN_SHIFT_CassetteGear);
@@ -81,16 +77,9 @@ void loop()
   }
   DOWN_SHIFT_CassetteGear_LASTSTATE = DOWN_SHIFT_CassetteGear_STATE;
 
-
   if(currentMillis - awake_LAST_TIME >= awake_RESENT_TIME) {
     BTSerial.write("1;A\n");
     Serial.println("1;A");
     awake_LAST_TIME = currentMillis;   
   }
-
-
-
-
-
-
 }

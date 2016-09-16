@@ -14,14 +14,11 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-/**
+/*
    @file LiveData.cpp
    @brief Contains everithing related to LiveData
    @author Carlos Vaello
 */
-
-
 #include "LiveData.h"
 
 int currentSpeed = 0;
@@ -57,6 +54,14 @@ int LiveData::getCurrentSpeed() {
 void LiveData::setCurrentSpeed(int currentSpeed_IN) {
   currentSpeed = currentSpeed_IN;
 }
+//
+//int LiveData::getLu() {
+//  return  lu;
+//}
+//
+//void LiveData::setLu(int lu_IN) {
+//  lu = lu_IN;
+//}
 
 int LiveData::getCurrentCranksetGear() {
   return currentCranksetGear;

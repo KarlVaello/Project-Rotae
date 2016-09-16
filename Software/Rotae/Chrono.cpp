@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/*
    @file Chrono.cpp
    @brief Contains everithing related to Chrono
    @author Carlos Vaello
@@ -29,7 +29,7 @@ int s, su = 0, sd = 0;
 int l, lu = 0, ld = 0, lc = 0;
 long int tiempo, inicio;
 
-//<<constructor>> setup the LED, make pin 13 an OUTPUT
+//<<constructor>> 
 Chrono::Chrono(long int chronoInitTime) {
   inicio = chronoInitTime;
 
@@ -39,7 +39,7 @@ Chrono::~Chrono() {
   /*nothing to destruct*/
 }
 
-/**
+/*
   @brief Split tiempo (millis) on minuts(m), seconds(s) and milliseconds(l)
   m:s:l
   And split it on theys digits to help to print it on the screen

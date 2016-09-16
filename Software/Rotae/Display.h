@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/**
+/*
    @file Display.h
    @brief Contains everithing related to display
    @author Carlos Vaello
@@ -39,7 +39,7 @@ class Display {
   public:
     Display();
     ~Display();
-    void DisplayUI(LiveData ld, Chrono ch) ;
+    void DisplayUI(LiveData ld, Chrono ch);
     void DisplayInit();
 };
 

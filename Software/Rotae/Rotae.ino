@@ -14,7 +14,6 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 /**
    @file Rotae.ino
    @brief Main skecht. Runs everithing.
@@ -43,11 +42,19 @@ String inputDataP;
 Chrono ch(millis());
 void setup()
 {
+<<<<<<< HEAD
   Serial.begin(MAIN_SERIAL_BAUDRATE);      // open the serial port at 9600 bps:
 
   peripherals.InitPeriperalCommunication();
 
   Serial3.begin(GPS_SERIAL_BAUDRATE);
+=======
+  Serial.begin(mainSerialBaudrate);      // open the serial port at 9600 bps:
+
+  peripherals.InitPeriperalCommunication();
+
+  Serial3.begin(gpsSerialBaudrate);
+>>>>>>> origin/master
   //Serial1.begin(9600);
 
   dp.DisplayInit();
@@ -80,6 +87,10 @@ void loop()
 }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 // This custom version of delay() ensures that the gps object
 // is being "fed".
 static void smartDelay(unsigned long ms)

@@ -14,7 +14,6 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 /**
    @file PeripheralCommunication.cpp
    @brief Peripheral bluethoot serial communication. Read,write and proces input comands
@@ -37,19 +36,22 @@ PeripheralCommunication::~PeripheralCommunication() {
   /*nothing to destruct*/
 }
 
-
-/**
+/*
   @brief Seting up serial baudrate. Used at start.
 */
 void PeripheralCommunication::InitPeriperalCommunication() {
   Serial1.begin(BLUETOOTH_SERIAL_BAUDRATE);
 }
 
-/**
+/*
   @brief Main input data function that read from serial1(bluetooth) until '\n'.
   The input string is sended to inputProcessing cutom function.
   @param ld is the current LiveData running.
 */
+void PeripheralCommunication::InitPeriperalCommunication() {
+  Serial1.begin(bluetoothSerialBaudrate);
+}
+
 void PeripheralCommunication::peripheralInputReader(LiveData ld) {
   while (Serial1.available() > 0) {
     inputData = Serial1.readStringUntil('\n');
@@ -59,13 +61,14 @@ void PeripheralCommunication::peripheralInputReader(LiveData ld) {
   }
 }
 
-/**
+/*
   @brief proces the inputData and process each comand.
   The input string is sended to inputProcessing cutom function.
 
   @param input input data comand (string) to process
   @param ld is the current LiveData running.
 */
+
 void PeripheralCommunication::inputProcessing(String input, LiveData ld) {
   //Serial.println(input);
   switch (input.charAt(0)) {
@@ -83,7 +86,7 @@ void PeripheralCommunication::inputProcessing(String input, LiveData ld) {
   }
 }
 
-/**
+/*
   @brief proces cassetteShifeter comands
 
   @param input input data comand (char) to process
@@ -98,24 +101,29 @@ void PeripheralCommunication::cassetteShifeter(char input, LiveData ld) {
       ld.setCassetteShifterOnLine_LAST_TIME(millis());
       break;
     case '1': //gear up
+      <<< <<< < HEAD
       if (ld.getCurrentCassetteGear() < MAX_CASSETTE_GEAR) {
-        ld.setCurrentCassetteGear(ld.getCurrentCassetteGear() + 1);
+        == == == =
+        if (ld.getCurrentCassetteGear() < MAX_CassetteGear) {
+          >>> >>> > origin / master
+          ld.setCurrentCassetteGear(ld.getCurrentCassetteGear() + 1);
+        }
+        ld.setCassetteShifterOnLine_LAST_TIME(millis());
+        break;
+      default:
+        //nothing
+        break;
       }
-      ld.setCassetteShifterOnLine_LAST_TIME(millis());
-      break;
-    default:
-      //nothing
-      break;
   }
 }
 
-
-/**
+/*
   @brief proces speedodometer comands
 
   @param input input data comand (String) to process
   @param ld is the current LiveData running.
 */
+String spliteded;
 void PeripheralCommunication::speedodometer(String input, LiveData ld) {
   Serial.println(input);
   switch (input.charAt(0)) {
@@ -124,11 +132,11 @@ void PeripheralCommunication::speedodometer(String input, LiveData ld) {
       ld.setCurrentSpeed((splitStringAtIndexSeparator(input, ';', 1)).toInt());
       Serial.println((splitStringAtIndexSeparator(input, ';', 1)));
       break;
+      <<< <<< < HEAD
   }
 }
 
-
-/**
+/*
   @brief Custom function thats allow to split a String by a separator and a idex.
   Example:
   String a = "0;45"
@@ -159,9 +167,9 @@ String PeripheralCommunication::splitStringAtIndexSeparator(String data, char se
   return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
 }
 
-
 void PeripheralCommunication::onlineStatusPerifericalCheck(LiveData ld) {
-  if (millis() > ld.getCassetteShifterOnLine_LAST_TIME() + CASSETTE_SHIFTER_ONLINE_MAX_TIME) {
+  if (millis() > ld.getCassetteShifterOnLine_LAST_TIME() + cassetteShifterOnLine_MAX_TIME) {
+    >>> >>> > origin / master
     ld.setCassetteShifterOnLine(false);
   }
 }
