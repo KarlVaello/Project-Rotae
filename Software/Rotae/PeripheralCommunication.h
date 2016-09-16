@@ -20,6 +20,7 @@
    @author Carlos Vaello
 */
 
+
 #ifndef PeripheralCommunication_H
 #define PeripheralCommunication_H
 
