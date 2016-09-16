@@ -15,32 +15,33 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
-   @file Display.h
-   @brief Contains everithing related to display
+   @file PeripheralCommunication.h
+   @brief Peripheral bluethoot serial communication. Read,write and proces input comands 
    @author Carlos Vaello
 */
 
-#ifndef Display_H
-#define Display_H
-
-#include <Arduino.h>
-#include <UTFT.h>
-#include <URTouch.h>
-#include <URTouchCD.h>
-//#include <UTFT_Buttons.h>
+#ifndef PeripheralCommunication_H
+#define PeripheralCommunication_H
 
 #include "LiveData.h"
-#include "Chrono.h"
+#include "Arduino.h"
 
-
-
-
-class Display {
+class PeripheralCommunication {
   public:
-    Display();
-    ~Display();
-    void DisplayUI(LiveData ld, Chrono ch) ;
-    void DisplayInit();
+    PeripheralCommunication();
+    ~PeripheralCommunication();
+
+    void InitPeriperalCommunication();
+    void peripheralInputReader(LiveData ld);
+    void inputProcessing(String input, LiveData ld);
+    void cassetteShifeter(char input, LiveData ld);
+
+    void onlineStatusPerifericalCheck(LiveData ld);
+    void speedodometer(String input, LiveData ld);
+
+    String getValue(String data, char separator, int index);
+    String splitStringAtIndexSeparator(String data, char separator, int index);
+
 };
 
 #endif

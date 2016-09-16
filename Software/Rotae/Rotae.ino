@@ -15,44 +15,40 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
+/**
+   @file Rotae.ino
+   @brief Main skecht. Runs everithing.
+   @author Carlos Vaello
+*/
 
 #include "Configuration.h"
 #include "Display.h"
 #include "LiveData.h"
-
+#include "PeripheralCommunication.h"
 #include "TinyGPS++.h"
+#include "Chrono.h"
 
 TinyGPSPlus gps;
 
 Display dp;
 LiveData ldata;
+PeripheralCommunication peripherals;
 
-
-float ltd, lon;
-double alt;
-// SCREEN VARIABLES
 
 long x, y;
 int pantalla;
 
-int state = 0;
-char dato = ' ';
-// DISTANCE VARIABLES
+String inputDataP;
 
-float distanceTraveled_M_Complete = 1.45f; //distance traveled metros
-int distanceTraveled_KM = 0; //distance traveled metros
-int distanceTraveled_M = 0 ; //distance traveled metros
-
-
-String inputDataString;
-
-
+Chrono ch(millis());
 void setup()
 {
-  Serial.begin(mainSerialBaudrate);      // open the serial port at 9600 bps:
-  Serial1.begin(bluetoothSerialBaudrate);
-  Serial3.begin(gpsSerialBaudrate);
+  Serial.begin(MAIN_SERIAL_BAUDRATE);      // open the serial port at 9600 bps:
+
+  peripherals.InitPeriperalCommunication();
+
+  Serial3.begin(GPS_SERIAL_BAUDRATE);
+  //Serial1.begin(9600);
 
   dp.DisplayInit();
 
@@ -61,99 +57,27 @@ void setup()
 
 void loop()
 {
+  ch.ChronoSplit();
 
-  while (Serial1.available() > 0) {
-    inputDataString = Serial1.readStringUntil('\n');
-    //currentCassetteGear = int(Serial1.read());
-    Serial.println(inputDataString);
-    inputProcessing(inputDataString);
-    delay(50);
-  }
-  if (gps.location.isUpdated())
-  {
-    ltd = gps.location.lat();
-    lon = gps.location.lng();
+  peripherals.peripheralInputReader(ldata);
+
+
+  /*if (gps.location.isUpdated())
+    {
+    ldata.setLtd(gps.location.lat());
+    ldata.setAlt(gps.location.lng());
     if (gps.altitude.isValid()) {
-      alt = gps.altitude.meters();
+      ldata.setAlt(gps.altitude.meters());
     }
-  }
+    }*/
 
+  dp.DisplayUI(ldata,ch);
 
-
-  /*tiempo = millis() - inicio;        //Calculamos el tiempo que paso desde que se activo el sensor start/stop
-
-    m = (tiempo / 1000) / 60;           //Calculamos los minutos
-    mu = m % 10;                        //Descomponemos los minutos y sacamos el valor de las unidades
-    md = (m - mu) / 10;                 //Descomponemos los minutos y sacamos el valor de las decenas
-
-    s = (tiempo / 1000) % 60;           //Calculamos los segundos
-    su = s % 10;                        //Descomponemos los segundos y sacamos el valor de las unidades
-    sd = (s - su) / 10;                 //Descomponemos los segundos y sacamos el valor de las decenas
-
-    l = (tiempo % 1000);                //Calculamos las milesimas de segundo
-    lu = l % 10;                        //Descomponemos las milesimas y sacamos el valor de las unidades
-    ld = ((l - lu) / 10) % 10;          //Descomponemos las milesimas y sacamos el valor de las decenas
-    lc = (l - (ld * 10) - lu) / 100;    //Descomponemos las milesimas y sacamos el valor de las centenas*/
-
-  dp.DisplayUI(ldata);
   smartDelay(1000);
-  //onlineStatusPerifericalCheck();
+
+  peripherals.onlineStatusPerifericalCheck(ldata);
 
 }
-
-
-void onlineStatusPerifericalCheck() {
-  if (millis() > ldata.getCassetteShifterOnLine_LAST_TIME() + cassetteShifterOnLine_MAX_TIME) {
-    ldata.setCassetteShifterOnLine(false);
-  }
-
-}
-
-void inputProcessing(String input) {
-  Serial.println(input);
-  switch (input.charAt(0)) {
-    case'0': //VELOCIMETER
-      //velocimeter(input);
-      break;
-    case '1': //CASSETTE
-      cassetteShiffeter(input.charAt(2));
-      ldata.setCassetteShifterOnLine(true);
-      ldata.setCassetteShifterOnLine_LAST_TIME(millis());
-      break;
-    case '2': //Crank
-
-      break;
-  }
-}
-
-
-void cassetteShiffeter(char input) {
-  switch (input) {
-    case '0': //gear down
-      if (ldata.getCurrentCassetteGear() > 1) {
-        ldata.setCurrentCassetteGear(ldata.getCurrentCassetteGear() - 1 );
-      }
-      ldata.setCassetteShifterOnLine_LAST_TIME(millis());
-      break;
-    case '1': //gear up
-      if (ldata.getCurrentCassetteGear() < MAX_CassetteGear) {
-        ldata.setCurrentCassetteGear(ldata.getCurrentCassetteGear() + 1);
-      }
-      ldata.setCassetteShifterOnLine_LAST_TIME(millis());
-      break;
-    default:
-      //nothing
-      break;
-  }
-}
-
-void velocimeter(String input) {
-  Serial.println(input);
-
-}
-
-
-
 
 
 // This custom version of delay() ensures that the gps object
@@ -168,3 +92,4 @@ static void smartDelay(unsigned long ms)
   }
   //} while (millis() - start < ms);
 }
+

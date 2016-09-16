@@ -14,21 +14,33 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+/**
+   @file LiveData.cpp
+   @brief Contains everithing related to LiveData
+   @author Carlos Vaello
+*/
+
+
 #include "LiveData.h"
 
 int currentSpeed = 0;
 
-// TIME VARIABLES
-int m, mu = 0, md = 0;                     //Declaramos las variables que vamos a usar
-int s, su = 0, sd = 0;
-int l, lu = 0, ld = 0, lc = 0;
-long int tiempo, inicio;
-
-int currentCranksetGear = 0;
-int currentCassetteGear = 0;
+int currentCranksetGear = 1;
+int currentCassetteGear = 1;
 
 bool cassetteShifterOnLine = false;
 int cassetteShifterOnLine_LAST_TIME = 0;
+
+
+float distanceTraveled_M_Complete = 1.45f; //distance traveled metros
+int distanceTraveled_KM_digits = 0; //distance traveled metros
+int distanceTraveled_M_digits = 0; //distance traveled metros
+
+
+//GPS
+float ltd, lon;
+double alt;
 
 //<<constructor>> setup the LED, make pin 13 an OUTPUT
 LiveData::LiveData() {
@@ -44,14 +56,6 @@ int LiveData::getCurrentSpeed() {
 }
 void LiveData::setCurrentSpeed(int currentSpeed_IN) {
   currentSpeed = currentSpeed_IN;
-}
-
-int LiveData::getLu() {
-  return  lu;
-}
-
-void LiveData::setLu(int lu_IN) {
-  lu = lu_IN;
 }
 
 int LiveData::getCurrentCranksetGear() {
@@ -83,4 +87,41 @@ int LiveData::getCassetteShifterOnLine_LAST_TIME() {
 void LiveData::setCassetteShifterOnLine_LAST_TIME(int LAST_TIME) {
   cassetteShifterOnLine_LAST_TIME = LAST_TIME;
 }
+
+float LiveData::getLtd() {
+  return ltd;
+}
+void LiveData::setLtd(float latitude) {
+  ltd = latitude;
+}
+
+float LiveData::getLon() {
+  return lon;
+}
+void LiveData::setLon(float longitude) {
+  lon = longitude;
+}
+
+double LiveData::getAlt() {
+  return alt;
+}
+void LiveData::setAlt(double altitu) {
+  alt = altitu;
+}
+
+int LiveData::getDistanceTraveled_KM_digits() {
+  return distanceTraveled_KM_digits;
+}
+void LiveData::setDistanceTraveled_KM_digits(int distanceTraveled_KM_digits_IN  ) {
+  distanceTraveled_KM_digits = distanceTraveled_KM_digits_IN;
+}
+
+int LiveData::getDistanceTraveled_M_digits() {
+  return distanceTraveled_M_digits;
+}
+
+void LiveData::setDistanceTraveled_M_digits (int distanceTraveled_M_digits_IN  ) {
+  distanceTraveled_M_digits = distanceTraveled_M_digits_IN;
+}
+
 

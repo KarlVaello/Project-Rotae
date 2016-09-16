@@ -15,12 +15,11 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/*
-  Este fichechor header contiene las variables que manejara la clase principal.
-  Debe almacenar todas las varaibles que puedan ser configurables por el usuario.
-
+/**
+   @file Configuration.h
+   @brief Contains global configurable variables.
+   @author Carlos Vaello
 */
-
 
 #ifndef Configuration
 #define Configuration
@@ -28,15 +27,15 @@
 #include <Arduino.h>
 
 
-#define mainSerialBaudrate 9600
-#define gpsSerialBaudrate 9600
-#define bluetoothSerialBaudrate 9600
+#define MAIN_SERIAL_BAUDRATE 9600
+#define GPS_SERIAL_BAUDRATE 9600
+#define BLUETOOTH_SERIAL_BAUDRATE 9600
 
 
-#define  MAX_CranksetGear 2
-#define  MAX_CassetteGear 11
+#define  MAX_CRANKSET_GEAR 2
+#define  MAX_CASSETTE_GEAR 11
 
 
-#define cassetteShifterOnLine_MAX_TIME 8000
+#define CASSETTE_SHIFTER_ONLINE_MAX_TIME 8000
 
 #endif
