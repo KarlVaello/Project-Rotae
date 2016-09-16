@@ -18,6 +18,7 @@
 
 #include "Display.h" //include the declaration for this class
 #include "Configuration.h"
+#include "Chrono.h"
 
 UTFT lcd(ILI9481, 38, 39, 40, 41);
 URTouch tactil(6, 5, 4, 3, 2);
@@ -59,7 +60,7 @@ void Display::DisplayInit() {
 }
 
 //turn the LED on
-void Display::DisplayUI(LiveData ld) {
+void Display::DisplayUI(LiveData ld, Chrono ch) {
   //##### SPEED PRINT #########
   lcd.setFont(SevenSeg_XXXL_Num);
   lcd.setBackColor(210, 215, 211);
@@ -152,32 +153,33 @@ void Display::DisplayUI(LiveData ld) {
   lcd.print(String(ld.getAlt()), 200, 200);
 
   //DISTANCE
-  /*
-    lcd.drawLine(10, 310, 310, 310);
-    lcd.setFont(CalibriBold32x48);
-    lcd.print(String(distanceTraveled_KM), 70, 320);
-    lcd.fillRect(142, 356, 148, 362);
-    lcd.print(String(distanceTraveled_M), 160, 320);
-    lcd.setFont(arial_bold);
-    lcd.setBackColor(210, 215, 211);
-    lcd.print("km", CENTER, 375);
-    lcd.drawLine(10, 175, 310, 175);
-    lcd.drawLine(10, 400, 310, 400);*/
 
-  /*lcd.setFont(CalibriBold32x48);
-    lcd.print(String(md), 18, 410);                      //Imprimimos los valores en el display
-    lcd.print(String(mu), 50, 410);
-    lcd.setFont(ArialNumFontPlus);
-    lcd.print(':', 82, 410);
-    lcd.setFont(CalibriBold32x48);
-    lcd.print(String(sd), 114, 410);
-    lcd.print(String(su), 146, 410);
-    lcd.setFont(ArialNumFontPlus);
-    lcd.print(':', 178, 410);
-    lcd.setFont(CalibriBold32x48);
-    lcd.print(String(lc), 210, 410);
-    lcd.print(String(ld), 242, 410);
-    lcd.print(String(ld.getLu()), 274, 410);*/
+  lcd.drawLine(10, 310, 310, 310);
+  lcd.setFont(CalibriBold32x48);
+  lcd.print(String(ld.getDistanceTraveled_KM_digits()), 70, 320);
+  lcd.fillRect(142, 356, 148, 362);
+  lcd.print(String(ld.getDistanceTraveled_M_digits()), 160, 320);
+  lcd.setFont(arial_bold);
+  lcd.setBackColor(210, 215, 211);
+  lcd.print("km", CENTER, 375);
+  lcd.drawLine(10, 175, 310, 175);
+  lcd.drawLine(10, 400, 310, 400);
+
+
+  lcd.setFont(CalibriBold32x48);
+  lcd.print(String(ch.getMd()), 18, 410);
+  lcd.print(String(ch.getMu()), 50, 410);
+  lcd.setFont(ArialNumFontPlus);
+  lcd.print(":", 82, 410);
+  lcd.setFont(CalibriBold32x48);
+  lcd.print(String(ch.getSd()), 114, 410);
+  lcd.print(String(ch.getSu()), 146, 410);
+  lcd.setFont(ArialNumFontPlus);
+  lcd.print(":", 178, 410);
+  lcd.setFont(CalibriBold32x48);
+  lcd.print(String(ch.getLc()), 210, 410);
+  lcd.print(String(ch.getLd()), 242, 410);
+  lcd.print(String(ch.getLu()), 274, 410);
 }
 
 

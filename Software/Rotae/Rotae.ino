@@ -22,6 +22,7 @@
 #include "LiveData.h"
 #include "PeripheralCommunication.h"
 #include "TinyGPS++.h"
+#include "Chrono.h"
 
 TinyGPSPlus gps;
 
@@ -30,12 +31,12 @@ LiveData ldata;
 PeripheralCommunication peripherals;
 
 
-// SCREEN VARIABLES
 long x, y;
 int pantalla;
 
 String inputDataP;
 
+Chrono ch(millis());
 void setup()
 {
   Serial.begin(mainSerialBaudrate);      // open the serial port at 9600 bps:
@@ -52,7 +53,7 @@ void setup()
 
 void loop()
 {
-
+  ch.ChronoSplit();
 
   peripherals.peripheralInputReader(ldata);
 
@@ -66,46 +67,13 @@ void loop()
     }
     }*/
 
+  dp.DisplayUI(ldata,ch);
 
-
-  /*tiempo = millis() - inicio;        //Calculamos el tiempo que paso desde que se activo el sensor start/stop
-
-    m = (tiempo / 1000) / 60;           //Calculamos los minutos
-    mu = m % 10;                        //Descomponemos los minutos y sacamos el valor de las unidades
-    md = (m - mu) / 10;                 //Descomponemos los minutos y sacamos el valor de las decenas
-
-    s = (tiempo / 1000) % 60;           //Calculamos los segundos
-    su = s % 10;                        //Descomponemos los segundos y sacamos el valor de las unidades
-    sd = (s - su) / 10;                 //Descomponemos los segundos y sacamos el valor de las decenas
-
-    l = (tiempo % 1000);                //Calculamos las milesimas de segundo
-    lu = l % 10;                        //Descomponemos las milesimas y sacamos el valor de las unidades
-    ld = ((l - lu) / 10) % 10;          //Descomponemos las milesimas y sacamos el valor de las decenas
-    lc = (l - (ld * 10) - lu) / 100;    //Descomponemos las milesimas y sacamos el valor de las centenas*/
-    
-  dp.DisplayUI(ldata);
-  
   smartDelay(1000);
-  onlineStatusPerifericalCheck();
+
+  peripherals.onlineStatusPerifericalCheck(ldata);
 
 }
-
-
-void onlineStatusPerifericalCheck() {
-  if (millis() > ldata.getCassetteShifterOnLine_LAST_TIME() + cassetteShifterOnLine_MAX_TIME) {
-    ldata.setCassetteShifterOnLine(false);
-  }
-
-}
-
-
-
-void velocimeter(String input) {
-  Serial.println(input);
-
-}
-
-
 
 
 

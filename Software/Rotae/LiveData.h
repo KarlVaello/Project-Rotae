@@ -50,8 +50,15 @@ class LiveData {
     double getAlt();
     void setAlt(double altitu);
 
+    int getDistanceTraveled_KM_digits();
+    void setDistanceTraveled_KM_digits(int distanceTraveled_KM_digits_IN  );
+
+    int getDistanceTraveled_M_digits();
+    void setDistanceTraveled_M_digits (int distanceTraveled_M_digits_IN );
+
+
+
 };
 
 
 #endif
-

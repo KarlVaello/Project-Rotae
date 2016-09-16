@@ -18,12 +18,6 @@
 
 int currentSpeed = 0;
 
-// TIME VARIABLES
-int m, mu = 0, md = 0;                     //Declaramos las variables que vamos a usar
-int s, su = 0, sd = 0;
-int l, lu = 0, ld = 0, lc = 0;
-long int tiempo, inicio;
-
 int currentCranksetGear = 1;
 int currentCassetteGear = 1;
 
@@ -32,8 +26,8 @@ int cassetteShifterOnLine_LAST_TIME = 0;
 
 
 float distanceTraveled_M_Complete = 1.45f; //distance traveled metros
-int distanceTraveled_KM = 0; //distance traveled metros
-int distanceTraveled_M = 0 ; //distance traveled metros
+int distanceTraveled_KM_digits = 0; //distance traveled metros
+int distanceTraveled_M_digits = 0; //distance traveled metros
 
 
 //GPS
@@ -55,14 +49,14 @@ int LiveData::getCurrentSpeed() {
 void LiveData::setCurrentSpeed(int currentSpeed_IN) {
   currentSpeed = currentSpeed_IN;
 }
-
-int LiveData::getLu() {
-  return  lu;
-}
-
-void LiveData::setLu(int lu_IN) {
-  lu = lu_IN;
-}
+//
+//int LiveData::getLu() {
+//  return  lu;
+//}
+//
+//void LiveData::setLu(int lu_IN) {
+//  lu = lu_IN;
+//}
 
 int LiveData::getCurrentCranksetGear() {
   return currentCranksetGear;
@@ -115,6 +109,19 @@ void LiveData::setAlt(double altitu) {
   alt = altitu;
 }
 
+int LiveData::getDistanceTraveled_KM_digits() {
+  return distanceTraveled_KM_digits;
+}
+void LiveData::setDistanceTraveled_KM_digits(int distanceTraveled_KM_digits_IN  ) {
+  distanceTraveled_KM_digits = distanceTraveled_KM_digits_IN;
+}
 
+int LiveData::getDistanceTraveled_M_digits() {
+  return distanceTraveled_M_digits;
+}
+
+void LiveData::setDistanceTraveled_M_digits (int distanceTraveled_M_digits_IN  ) {
+  distanceTraveled_M_digits = distanceTraveled_M_digits_IN;
+}
 
 

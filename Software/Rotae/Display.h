@@ -26,6 +26,7 @@
 //#include <UTFT_Buttons.h>
 
 #include "LiveData.h"
+#include "Chrono.h"
 
 
 
@@ -34,9 +35,8 @@ class Display {
   public:
     Display();
     ~Display();
-    void DisplayUI(LiveData ld);
+    void DisplayUI(LiveData ld, Chrono ch);
     void DisplayInit();
 };
 
 #endif
-

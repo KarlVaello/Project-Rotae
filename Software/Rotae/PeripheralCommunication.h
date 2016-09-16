@@ -25,14 +25,18 @@ class PeripheralCommunication {
   public:
     PeripheralCommunication();
     ~PeripheralCommunication();
-    
+
     void InitPeriperalCommunication();
     void peripheralInputReader(LiveData ld);
     void inputProcessing(String input, LiveData ld);
     void cassetteShifeter(char input, LiveData ld);
 
+    void onlineStatusPerifericalCheck(LiveData ld);
+    void speedodometer(String input, LiveData ld);
+
+    String getValue(String data, char separator, int index);
+    char* subStr (char* str, char *delim, int index);
 
 };
 
 #endif
-

@@ -50,6 +50,7 @@ void PeripheralCommunication::inputProcessing(String input, LiveData ld) {
   switch (input.charAt(0)) {
     case'0': //VELOCIMETER
       //velocimeter(input);
+      speedodometer(input, ld);
       break;
     case '1': //CASSETTE SHIFTER
       cassetteShifeter(input.charAt(2), ld);
@@ -61,9 +62,6 @@ void PeripheralCommunication::inputProcessing(String input, LiveData ld) {
   }
 }
 
-
-
-
 void PeripheralCommunication::cassetteShifeter(char input, LiveData ld) {
   switch (input) {
     case '0': //gear down
@@ -74,10 +72,7 @@ void PeripheralCommunication::cassetteShifeter(char input, LiveData ld) {
       break;
     case '1': //gear up
       if (ld.getCurrentCassetteGear() < MAX_CassetteGear) {
-        Serial.print(ld.getCurrentCassetteGear());
         ld.setCurrentCassetteGear(ld.getCurrentCassetteGear() + 1);
-        Serial.print(ld.getCurrentCassetteGear());
-
       }
       ld.setCassetteShifterOnLine_LAST_TIME(millis());
       break;
@@ -87,10 +82,46 @@ void PeripheralCommunication::cassetteShifeter(char input, LiveData ld) {
   }
 }
 
+void PeripheralCommunication::speedodometer(String input, LiveData ld) {
+  Serial.println(input);
+  switch (input.charAt(0)) {
+    case'0': //VELOCIMETER
+      //velocimeter(input);
+      break;
+    case '1': //CASSETTE SHIFTER
+      ld.setCurrentSpeed((getValue(input, ';', 1)).toInt());
+      Serial.println((getValue(input, ';', 1)).toInt());
+      break;
+    case '2': //Crank
+      break;
+  }
+}
+
+String PeripheralCommunication::getValue(String data, char separator, int index)
+{
+  int found = 0;
+  int strIndex[] = {0, -1};
+  int maxIndex = data.length() - 1;
+
+  for (int i = 0; i <= maxIndex && found <= index; i++) {
+    if (data.charAt(i) == separator || i == maxIndex) {
+      found++;
+      strIndex[0] = strIndex[1] + 1;
+      strIndex[1] = (i == maxIndex) ? i + 1 : i;
+    }
+  }
+
+  return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
+}
 
 /*void distancia() {
   distRecorrida = perimetroRueda * contador;
   distKM = distRecorrida / 1000;
   }*/
 
+void PeripheralCommunication::onlineStatusPerifericalCheck(LiveData ld) {
+  if (millis() > ld.getCassetteShifterOnLine_LAST_TIME() + cassetteShifterOnLine_MAX_TIME) {
+    ld.setCassetteShifterOnLine(false);
+  }
+}
 
