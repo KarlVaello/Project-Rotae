@@ -43,19 +43,12 @@ String inputDataP;
 Chrono ch(millis());
 void setup()
 {
-<<<<<<< HEAD
   Serial.begin(MAIN_SERIAL_BAUDRATE);      // open the serial port at 9600 bps:
 
   peripherals.InitPeriperalCommunication();
 
   Serial3.begin(GPS_SERIAL_BAUDRATE);
-=======
-  Serial.begin(mainSerialBaudrate);      // open the serial port at 9600 bps:
 
-  peripherals.InitPeriperalCommunication();
-
-  Serial3.begin(gpsSerialBaudrate);
->>>>>>> origin/master
   //Serial1.begin(9600);
 
   dp.DisplayInit();
@@ -79,7 +72,7 @@ void loop()
     }
     }*/
 
-  dp.DisplayUI(ldata,ch);
+  dp.DisplayUI(ldata, ch);
 
   smartDelay(1000);
 
@@ -87,11 +80,6 @@ void loop()
 
 }
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 // This custom version of delay() ensures that the gps object
 // is being "fed".
 static void smartDelay(unsigned long ms)
