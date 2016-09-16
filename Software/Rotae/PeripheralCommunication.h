@@ -35,7 +35,7 @@ class PeripheralCommunication {
     void speedodometer(String input, LiveData ld);
 
     String getValue(String data, char separator, int index);
-    char* subStr (char* str, char *delim, int index);
+    String splitStringAtIndexSeparator(String data, char separator, int index);
 
 };
 

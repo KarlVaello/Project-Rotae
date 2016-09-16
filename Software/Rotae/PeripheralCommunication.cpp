@@ -38,7 +38,7 @@ void PeripheralCommunication::InitPeriperalCommunication() {
 void PeripheralCommunication::peripheralInputReader(LiveData ld) {
   while (Serial1.available() > 0) {
     inputData = Serial1.readStringUntil('\n');
-    Serial.println(inputData);
+    //Serial.println(inputData);
     inputProcessing(inputData, ld);
     delay(50);
   }
@@ -46,7 +46,7 @@ void PeripheralCommunication::peripheralInputReader(LiveData ld) {
 
 
 void PeripheralCommunication::inputProcessing(String input, LiveData ld) {
-  Serial.println(input);
+  //Serial.println(input);
   switch (input.charAt(0)) {
     case'0': //VELOCIMETER
       //velocimeter(input);
@@ -81,28 +81,26 @@ void PeripheralCommunication::cassetteShifeter(char input, LiveData ld) {
       break;
   }
 }
-
+String spliteded;
 void PeripheralCommunication::speedodometer(String input, LiveData ld) {
   Serial.println(input);
   switch (input.charAt(0)) {
     case'0': //VELOCIMETER
-      //velocimeter(input);
+      //spliteded = (getValue(input, ';', 1));
+      ld.setCurrentSpeed((splitStringAtIndexSeparator(input, ';', 1)).toInt());
+      Serial.println((splitStringAtIndexSeparator(input, ';', 1)));
       break;
-    case '1': //CASSETTE SHIFTER
-      ld.setCurrentSpeed((getValue(input, ';', 1)).toInt());
-      Serial.println((getValue(input, ';', 1)).toInt());
-      break;
-    case '2': //Crank
-      break;
+
   }
 }
 
-String PeripheralCommunication::getValue(String data, char separator, int index)
+String PeripheralCommunication::splitStringAtIndexSeparator(String data, char separator, int index)
 {
   int found = 0;
-  int strIndex[] = {0, -1};
+  int strIndex[] = {
+    0, -1
+  };
   int maxIndex = data.length() - 1;
-
   for (int i = 0; i <= maxIndex && found <= index; i++) {
     if (data.charAt(i) == separator || i == maxIndex) {
       found++;
@@ -110,10 +108,8 @@ String PeripheralCommunication::getValue(String data, char separator, int index)
       strIndex[1] = (i == maxIndex) ? i + 1 : i;
     }
   }
-
   return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
 }
-
 /*void distancia() {
   distRecorrida = perimetroRueda * contador;
   distKM = distRecorrida / 1000;
