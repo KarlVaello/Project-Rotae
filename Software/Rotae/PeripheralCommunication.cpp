@@ -38,19 +38,12 @@ PeripheralCommunication::~PeripheralCommunication() {
 }
 
 /*
-  @brief Seting up serial baudrate. Used at start.
-*/
-void PeripheralCommunication::InitPeriperalCommunication() {
-  Serial1.begin(BLUETOOTH_SERIAL_BAUDRATE);
-}
-
-/*
   @brief Main input data function that read from serial1(bluetooth) until '\n'.
   The input string is sended to inputProcessing cutom function.
   @param ld is the current LiveData running.
 */
 void PeripheralCommunication::InitPeriperalCommunication() {
-  Serial1.begin(bluetoothSerialBaudrate);
+  Serial1.begin(BLUETOOTH_SERIAL_BAUDRATE);
 }
 
 void PeripheralCommunication::peripheralInputReader(LiveData ld) {
@@ -102,21 +95,18 @@ void PeripheralCommunication::cassetteShifeter(char input, LiveData ld) {
       ld.setCassetteShifterOnLine_LAST_TIME(millis());
       break;
     case '1': //gear up
-      <<< <<< < HEAD
       if (ld.getCurrentCassetteGear() < MAX_CASSETTE_GEAR) {
-        == == == =
-        if (ld.getCurrentCassetteGear() < MAX_CassetteGear) {
-          >>> >>> > origin / master
-          ld.setCurrentCassetteGear(ld.getCurrentCassetteGear() + 1);
-        }
-        ld.setCassetteShifterOnLine_LAST_TIME(millis());
-        break;
-      default:
-        //nothing
-        break;
+
+        ld.setCurrentCassetteGear(ld.getCurrentCassetteGear() + 1);
       }
+      ld.setCassetteShifterOnLine_LAST_TIME(millis());
+      break;
+    default:
+      //nothing
+      break;
   }
 }
+
 
 /*
   @brief proces speedodometer comands
@@ -133,7 +123,6 @@ void PeripheralCommunication::speedodometer(String input, LiveData ld) {
       ld.setCurrentSpeed((splitStringAtIndexSeparator(input, ';', 1)).toInt());
       Serial.println((splitStringAtIndexSeparator(input, ';', 1)));
       break;
-      <<< <<< < HEAD
   }
 }
 
@@ -169,9 +158,7 @@ String PeripheralCommunication::splitStringAtIndexSeparator(String data, char se
 }
 
 void PeripheralCommunication::onlineStatusPerifericalCheck(LiveData ld) {
-  if (millis() > ld.getCassetteShifterOnLine_LAST_TIME() + cassetteShifterOnLine_MAX_TIME) {
-    >>> >>> > origin / master
+  if (millis() > ld.getCassetteShifterOnLine_LAST_TIME() + CASSETTE_SHIFTER_ONLINE_MAX_TIME) {
     ld.setCassetteShifterOnLine(false);
   }
 }
-
