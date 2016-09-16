@@ -21,8 +21,12 @@ int tiempo3 = 0;
 float tiempo4 = 0;
 int currentSpeed = 0;
 
+int sensorPin = 9;
+
 void setup()
 {
+
+
   Serial.begin(9600);
   Serial.println("Arduino with HC-05 is ready");
 
@@ -31,7 +35,7 @@ void setup()
   Serial.println("BTserial started at 9600");
 
   BTSerial.println("0;A");
-  pinMode(3, INPUT);
+  pinMode(sensorPin, INPUT);
 }
 
 
@@ -40,9 +44,11 @@ void loop()
 
   currentMillis = millis();
 
-  estadoActual1 = digitalRead(3);
+  estadoActual1 = digitalRead(sensorPin);
+  //Serial.println(estadoActual1);
+
   delay(10);
-  estadoActual2 = digitalRead(3);
+  estadoActual2 = digitalRead(sensorPin);
   //Si los estados no son iguales, el sketch no hace gran cosa
   if (estadoActual1 == estadoActual2) {
     if (estadoActual1 != estadoUltimo) {
@@ -51,8 +57,8 @@ void loop()
         Serial.print ("Vueltas ");
         Serial.println(contador);
         //distancia();
-        //VEL();
-
+        BTSerial.print("0;" + String(VEL()) + "\n");
+        Serial.println(VEL());
         //BTSerial.write(currentSpeed);
 
       }
@@ -60,37 +66,23 @@ void loop()
   }
   estadoUltimo = estadoActual1;
 
-  currentSpeed = random(0, 99);
-  Serial.println("0;" + String(currentSpeed));
-  BTSerial.print("0;" + String(currentSpeed) + "\n");
+  /*currentSpeed = random(0, 99);
+    Serial.println("0;" + String(currentSpeed));
+    BTSerial.print("0;" + String(currentSpeed) + "\n");*/
 
-  if (currentMillis - awake_LAST_TIME >= awake_RESENT_TIME) {
+  /*if (currentMillis - awake_LAST_TIME >= awake_RESENT_TIME) {
     BTSerial.write("0;A\n");
     Serial.println("0;A");
     awake_LAST_TIME = currentMillis;
-  }
+    }*/
 
 
-  delay(4000);
+  //delay(4000);
 
 }
 
 
-/*void distancia() {
-  distRecorrida = perimetroRueda * contador;
-  distKM = distRecorrida / 1000;
-  if (distRecorrida <= 999) {
-    Serial.print("Distancia recorrida en m= ");
-    Serial.println(distRecorrida);
-  }
-  else {
-    Serial.print("Distancia recorrida en Km= ");
-    Serial.println(distKM);
-  }
-  }*/
-
-
-void VEL() {
+int  VEL() {
   if (contador % 2 == 0 ) {
     tiempo1 = millis();
   }
@@ -100,15 +92,16 @@ void VEL() {
   tiempo3 = abs(tiempo2 - tiempo1); //hay que pasar el tiempo a hrs
   tiempo4 = (((tiempo3 / 1000.0) / 60.0) / 60.0);
   currentSpeed = ((perimetroRueda / 1000) / tiempo4);
-  Serial.print(" tiempo1= ");
-  Serial.print(tiempo1);
-  Serial.print("tiempo2= ");
-  Serial.print(tiempo2);
-  Serial.print(" tiempo3= ");
-  Serial.print(tiempo3);
-  Serial.print(" tiempo4= ");
-  Serial.println(tiempo4);
-  Serial.print("velocidad= ");
-  Serial.println(currentSpeed);
+  /*Serial.print(" tiempo1= ");
+    Serial.print(tiempo1);
+    Serial.print("tiempo2= ");
+    Serial.print(tiempo2);
+    Serial.print(" tiempo3= ");
+    Serial.print(tiempo3);
+    Serial.print(" tiempo4= ");
+    Serial.println(tiempo4);
+    Serial.print("velocidad= ");
+    Serial.println(currentSpeed);*/
+  return currentSpeed;
 }
 

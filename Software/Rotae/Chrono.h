@@ -15,28 +15,30 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef CHRONO_H
+#define CHRONO_H
 
-#ifndef Display_H
-#define Display_H
+#include "Arduino.h"
 
-#include <Arduino.h>
-#include <UTFT.h>
-#include <URTouch.h>
-#include <URTouchCD.h>
-//#include <UTFT_Buttons.h>
-
-#include "LiveData.h"
-#include "Chrono.h"
-
-
-
-
-class Display {
+class Chrono {
   public:
-    Display();
-    ~Display();
-    void DisplayUI(LiveData ld, Chrono ch);
-    void DisplayInit();
+    Chrono(long int chronoInitTime );
+    ~Chrono();
+    void ChronoSplit() ;
+    int getM();
+    int getMu();
+    int getMd();
+
+    int getS();
+    int getSu();
+    int getSd();
+
+    int getL();
+    int getLu();
+    int getLd();
+    int getLc();
+
+
 };
 
 #endif
