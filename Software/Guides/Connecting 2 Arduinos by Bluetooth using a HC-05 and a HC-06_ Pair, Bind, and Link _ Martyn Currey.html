@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/ -->
+<html lang="en-US"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width">
+<meta name="google-site-verification" content="9vtF_9GduWVfxQ16gIybj2XNEFheExTF1T8j9Q4QkBM">
+<title>Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06: Pair, Bind, and Link | Martyn Currey</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="stylesheet" type="text/css" media="all" href="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/style.css">
+<link rel="pingback" href="http://www.martyncurrey.com/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="http://www.martyncurrey.com/wp-content/themes/twentyeleven/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+
+	<style type="text/css">
+		#fancybox-close{right:-15px;top:-15px}
+		div#fancybox-content{border-color:#FFFFFF}
+		div#fancybox-title{background-color:#FFFFFF}
+		div#fancybox-outer{background-color:#FFFFFF}
+		div#fancybox-title-inside{color:#333333}
+	</style>
+
+	<link rel="alternate" type="application/rss+xml" title="Martyn Currey » Feed" href="http://www.martyncurrey.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Martyn Currey » Comments Feed" href="http://www.martyncurrey.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Martyn Currey » Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06: Pair, Bind, and Link Comments Feed" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.martyncurrey.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.4"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/wp-emoji-release.min.js" type="text/javascript"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="cptch_stylesheet-css" href="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="icons-css" href="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/front.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdm-bootstrap-css" href="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/bootstrap.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="flowplayer-css-css" href="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/all-skins.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/fancybox.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-syntax-css-css" href="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/wp-syntax.css" type="text/css" media="all">
+<script type="text/javascript" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/jquery.js"></script>
+<script type="text/javascript" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/bootstrap.min.js"></script>
+<script type="text/javascript" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/front.js"></script>
+<script type="text/javascript" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/flowplayer.min.js"></script>
+<script type="text/javascript" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/jquery.fancybox.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.martyncurrey.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.martyncurrey.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06: Easy Method Using CMODE" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-easy-method-using-cmode/">
+<link rel="next" title="FTDI + ESP8266" href="http://www.martyncurrey.com/arduino-esp8266/">
+<meta name="generator" content="WordPress 4.2.4">
+<link rel="canonical" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/">
+<link rel="shortlink" href="http://www.martyncurrey.com/?p=2098">
+<!-- This content is generated with the Easy Video Player plugin v1.0.8 - http://noorsplugin.com/wordpress-video-plugin/ --><script>flowplayer.conf.embed = false;flowplayer.conf.keyboard = false;</script><!-- Easy Video Player plugin -->
+<!-- Fancybox for WordPress -->
+<script type="text/javascript">
+jQuery(function(){
+
+jQuery.fn.getTitle = function() { // Copy the title of every IMG tag and add it to its parent A so that fancybox can show titles
+	var arr = jQuery("a.fancybox");
+	jQuery.each(arr, function() {
+		var title = jQuery(this).children("img").attr("title");
+		jQuery(this).attr('title',title);
+	})
+}
+
+// Supported file extensions
+var thumbnails = jQuery("a:has(img)").not(".nolightbox").filter( function() { return /\.(jpe?g|png|gif|bmp)$/i.test(jQuery(this).attr('href')) });
+
+thumbnails.addClass("fancybox").getTitle();
+jQuery("a.fancybox").fancybox({
+	'cyclic': true,
+	'autoScale': true,
+	'padding': 10,
+	'opacity': true,
+	'speedIn': 500,
+	'speedOut': 500,
+	'changeSpeed': 300,
+	'overlayShow': true,
+	'overlayOpacity': "0.3",
+	'overlayColor': "#666666",
+	'titleShow': true,
+	'titlePosition': 'inside',
+	'enableEscapeButton': true,
+	'showCloseButton': true,
+	'showNavArrows': true,
+	'hideOnOverlayClick': true,
+	'hideOnContentClick': false,
+	'width': 560,
+	'height': 340,
+	'transitionIn': "fade",
+	'transitionOut': "fade",
+	'centerOnScroll': true
+});
+
+
+})
+</script>
+<!-- END Fancybox for WordPress -->
+<script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script></head>
+
+<body class="single single-post postid-2098 single-format-standard single-author singular two-column right-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="http://www.martyncurrey.com/" title="Martyn Currey" rel="home">Martyn Currey</a></span></h1>
+				<h2 id="site-description">Mostly Arduino stuff</h2>
+			</hgroup>
+
+			
+ 
+						<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#content" title="Skip to primary content">Skip to primary content</a></div>
+				<div class="skip-link"><a class="assistive-text" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#secondary" title="Skip to secondary content">Skip to secondary content</a></div>
+								<div class="menu"><ul><li><a href="http://www.martyncurrey.com/">Home</a></li><li class="page_item page-item-2572"><a href="http://www.martyncurrey.com/arduino-bluetooth-control/">Arduino Bluetooth Control</a></li><li class="page_item page-item-3408"><a href="http://www.martyncurrey.com/bluetooth-control-panel/">Bluetooth Control Panel</a></li><li class="page_item page-item-950"><a href="http://www.martyncurrey.com/dropcontroller-v2/">dropController V2</a></li><li class="page_item page-item-559"><a href="http://www.martyncurrey.com/water-drop-photographs/">Water Drop Photographs</a></li></ul></div>
+			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Post navigation</h3>
+						<span class="nav-previous"><a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-easy-method-using-cmode/" rel="prev"><span class="meta-nav">←</span> Previous</a></span>
+						<span class="nav-next"><a href="http://www.martyncurrey.com/arduino-esp8266/" rel="next">Next <span class="meta-nav">→</span></a></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-2098" class="post-2098 post type-post status-publish format-standard hentry category-arduino category-bluetooth tag-hc-05 tag-hc-06">
+	<header class="entry-header">
+		<h1 class="entry-title">Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06: Pair, Bind, and Link</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/" title="9:22 am" rel="bookmark"><time class="entry-date" datetime="2014-11-25T09:22:40+00:00">November 25, 2014</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://www.martyncurrey.com/author/admin/" title="View all posts by Martyn" rel="author">Martyn</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>In a previous post I showed how the HC-05 can auto connect to other Bluetooth devices by setting the HC-05 to pair with any device using CMODE=1. This is quick and easy but does not give any control over which other device the HC-05 connects to.</p>
+<p>In this post I show how to set up the HC-05 to always connect to the same HC-06. For this we use PAIR, BIND, and LINK.</p>
+<p><iframe width="584" height="329" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/P9ln201pijw.html" frameborder="0" allowfullscreen=""></iframe></p>
+<p>I am using 2 separate Arduino IDEs; version 1.6.3 which is installed, and version 1.0.5 which I run from a folder (it is the non install version). This allows me to use 2 IDEs at the same time, each connected to a  different Arduino. It also gives me 2 serial monitors, one for each Arduino.</p>
+<p>You do not need to use different versions of the IDE. You can run 2 instances of the same IDE. Thanks to Brian for the tip.</p>
+<p>The modules are the zs-040 versions of the HC-05 and the HC-06. </p>
+<p>The HC-05 has 2 AT modes which I refer to as “mini” AT mode and “full” AT mode and some commands only work when in “full” AT mode. To enter “full” AT mode pin 34 needs to be HIGH and kept HIGH. To accomplish this I have made a connection from pin 34 to +3.3v. See the diagram below (or after the jump).</p>
+<p>If you are not sure about the different AT modes take a look at <a href="http://www.martyncurrey.com/arduino-with-hc-05-bluetooth-module-at-mode/" title="Arduino with HC-05 (ZS-040) Bluetooth module – AT MODE">Arduino with HC-05 (ZS-040) Bluetooth module – AT MODE</a></p>
+<p>If you are not familiar with how the HC-06 and HC-06 work it may be worth while checking out some of the other posts:<br>
+<a href="http://www.martyncurrey.com/hc-05-and-hc-06-zs-040-bluetooth-modules/">HC-05 and HC-06 zs-040 Bluetooth modules</a><br>
+<a href="http://www.martyncurrey.com/arduino-and-hc-06-zs-040/">Arduino and HC-06 (ZS-040)</a><br>
+<a href="http://www.martyncurrey.com/arduino-with-hc-05-bluetooth-module-in-slave-mode/">Arduino With HC-05 Bluetooth Module in Slave Mode</a><br>
+<a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-easy-method-using-cmode/">Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06: Easy Method Using CMODE</a></p>
+<p><span id="more-2098"></span></p>
+<p>&nbsp;<br>
+&nbsp;</p>
+<h2>Connections</h2>
+<p>I have 2 Arduinos. One connected to a HC-05 zs-040 and one connected to a HC-06 zs-040. </p>
+<p>The HC-05 has a connection from pin 34 to +3.3v. This activates “full” AT mode.<br>
+<a href="http://www.martyncurrey.com/wp-content/uploads/2014/10/HC-05_zs-040_01_1200.jpg" class="fancybox"><img src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_zs-040_01_1200-150x150.jpg" alt="HC-05 zs-040" width="150" height="150" class="alignnone size-thumbnail wp-image-1928"></a></p>
+<p><a href="http://www.martyncurrey.com/wp-content/uploads/2015/07/HC-05_to_HC-06_CircuitDiagram1.jpg" class="fancybox"><img src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06_CircuitDiagram1-584x249.jpg" alt="HC-05_to_HC-06_CircuitDiagram" width="584" height="249" class="alignnone size-medium wp-image-2299"></a></p>
+<p><a href="http://www.martyncurrey.com/wp-content/uploads/2015/07/HC-05_to_HC-06_HC-05_BreadBoard.jpg" class="fancybox"><img src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06_HC-05_BreadBoard-584x297.jpg" alt="HC-05_to_HC-06_HC-05_BreadBoard" width="584" height="297" class="alignnone size-medium wp-image-2140"></a></p>
+<p><a href="http://www.martyncurrey.com/wp-content/uploads/2015/07/HC-05_to_HC-06_HC-06_BreadBoard.jpg" class="fancybox"><img src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06_HC-06_BreadBoard-584x260.jpg" alt="HC-05_to_HC-06_HC-06_BreadBoard" width="584" height="260" class="alignnone size-medium wp-image-2141"></a></p>
+<p>&nbsp;</p>
+<h2>HC-05 Set Up</h2>
+<p>I have the HC-05 set with the following values:</p>
+<p>– ROLE = 0 (slave mode)<br>
+– UART = 9600 (baud rate for communication mode)<br>
+– CMODE = 0 (only connect to paired devices)<br>
+– PSWD = 1234 (password/PIN for pairing)</p>
+<p>In AT mode I will be using a baud rate of 38400.</p>
+<p>Build the circuit, power on and load the following sketch.</p>
+
+<div class="wp_syntax"><table><tbody><tr><td class="code"><pre class="c" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">// Basic Bluetooth sketch HC-05_02_38400</span>
+<span style="color: #666666; font-style: italic;">// Connect the HC-05 module and communicate using the serial monitor</span>
+<span style="color: #666666; font-style: italic;">//</span>
+<span style="color: #666666; font-style: italic;">// The HC-05 defaults to commincation mode when first powered on.</span>
+<span style="color: #666666; font-style: italic;">// Needs to be placed in to AT mode</span>
+<span style="color: #666666; font-style: italic;">// After a factory reset the default baud rate for communication mode is 38400</span>
+<span style="color: #666666; font-style: italic;">//</span>
+<span style="color: #666666; font-style: italic;">//</span>
+<span style="color: #666666; font-style: italic;">//  Pins</span>
+<span style="color: #666666; font-style: italic;">//  BT VCC to Arduino 5V out. </span>
+<span style="color: #666666; font-style: italic;">//  BT GND to GND</span>
+<span style="color: #666666; font-style: italic;">//  BT RX to Arduino pin 3 (through a voltage divider)</span>
+<span style="color: #666666; font-style: italic;">//  BT TX to Arduino pin 2 (no need voltage divider)</span>
+&nbsp;
+&nbsp;
+<span style="color: #339933;">#include &lt;SoftwareSerial.h&gt;</span>
+SoftwareSerial BTserial<span style="color: #009900;">(</span><span style="color: #0000dd;">2</span><span style="color: #339933;">,</span> <span style="color: #0000dd;">3</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// RX | TX</span>
+<span style="color: #666666; font-style: italic;">// Connect the HC-05 TX to Arduino pin 2 RX. </span>
+<span style="color: #666666; font-style: italic;">// Connect the HC-05 RX to Arduino pin 3 TX through a voltage divider.</span>
+&nbsp;
+<span style="color: #993333;">char</span> c <span style="color: #339933;">=</span> <span style="color: #ff0000;">' '</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #993333;">void</span> setup<span style="color: #009900;">(</span><span style="color: #009900;">)</span> 
+<span style="color: #009900;">{</span>
+    <span style="color: #666666; font-style: italic;">// start th serial communication with the host computer</span>
+    Serial.<span style="color: #202020;">begin</span><span style="color: #009900;">(</span><span style="color: #0000dd;">9600</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+    Serial.<span style="color: #202020;">println</span><span style="color: #009900;">(</span><span style="color: #ff0000;">"Arduino with HC-05 is ready"</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #666666; font-style: italic;">// start communication with the HC-05 using 38400</span>
+    BTserial.<span style="color: #202020;">begin</span><span style="color: #009900;">(</span><span style="color: #0000dd;">38400</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>  
+    Serial.<span style="color: #202020;">println</span><span style="color: #009900;">(</span><span style="color: #ff0000;">"BTserial started at 38400"</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">}</span>
+&nbsp;
+<span style="color: #993333;">void</span> loop<span style="color: #009900;">(</span><span style="color: #009900;">)</span>
+<span style="color: #009900;">{</span>
+&nbsp;
+     <span style="color: #666666; font-style: italic;">// Keep reading from HC-05 and send to Arduino Serial Monitor</span>
+    <span style="color: #b1b100;">if</span> <span style="color: #009900;">(</span>BTserial.<span style="color: #202020;">available</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span>
+    <span style="color: #009900;">{</span>  
+        c <span style="color: #339933;">=</span> BTserial.<span style="color: #202020;">read</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+        Serial.<span style="color: #202020;">write</span><span style="color: #009900;">(</span>c<span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">}</span>
+&nbsp;
+    <span style="color: #666666; font-style: italic;">// Keep reading from Arduino Serial Monitor and send to HC-05</span>
+    <span style="color: #b1b100;">if</span> <span style="color: #009900;">(</span>Serial.<span style="color: #202020;">available</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span>
+    <span style="color: #009900;">{</span>
+        c <span style="color: #339933;">=</span>  Serial.<span style="color: #202020;">read</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+&nbsp;
+        <span style="color: #666666; font-style: italic;">// mirror the commands back to the serial monitor</span>
+        <span style="color: #666666; font-style: italic;">// makes it easy to follow the commands</span>
+        Serial.<span style="color: #202020;">write</span><span style="color: #009900;">(</span>c<span style="color: #009900;">)</span><span style="color: #339933;">;</span>   
+        BTserial.<span style="color: #202020;">write</span><span style="color: #009900;">(</span>c<span style="color: #009900;">)</span><span style="color: #339933;">;</span>  
+    <span style="color: #009900;">}</span>
+&nbsp;
+<span style="color: #009900;">}</span></pre></td></tr></tbody></table></div>
+
+<p>Because pin 34 on the Bluetooth module is brought HIGH, the HC-05 should enter AT mode on power on.<br>
+Open the serial monitor on the host computer and confirm you are in AT mode by typing “AT” (no quotes). You should get a reply of “OK”<br>
+Remember that the HC-05 requires “Both NL &amp; CR” to be set.</p>
+<p>The sketch echos the commands you enter back to the serial monitor. This makes it a bit easier to follow.<br>
+<a href="http://www.martyncurrey.com/wp-content/uploads/2015/07/HC-05_to_HC-06-HC-05_AT_2.jpg" class="fancybox"><img src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06-HC-05_AT_2-584x226.jpg" alt="HC-05_to_HC-06-HC-05_AT_2" width="584" height="226" class="alignnone size-medium wp-image-2118"></a></p>
+<p>&nbsp;</p>
+<h2>HC-06 Set Up</h2>
+<p>Build the HC-06 circuit, power on and load the following sketch. My HC-06 is set to use 9600 baud rate. If yours is using a different speed then you will need to change the sketch. Change the following lines:<br>
+BTSerial.begin(9600);<br>
+Serial.println(“BTserial started at 9600″);<br>
+Change the 9600 to what ever speed your HC-06 is using.</p>
+
+<div class="wp_syntax"><table><tbody><tr><td class="code"><pre class="c" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">// Basic bluetooth test sketch. HC-06_01_9600</span>
+<span style="color: #666666; font-style: italic;">// HC-06 ZS-040 </span>
+<span style="color: #666666; font-style: italic;">// </span>
+<span style="color: #666666; font-style: italic;">// </span>
+<span style="color: #666666; font-style: italic;">//  Uses hardware serial to talk to the host computer and software serial for communication with the bluetooth module</span>
+<span style="color: #666666; font-style: italic;">//</span>
+<span style="color: #666666; font-style: italic;">//  Pins</span>
+<span style="color: #666666; font-style: italic;">//  BT VCC to Arduino 5V out. </span>
+<span style="color: #666666; font-style: italic;">//  BT GND to GND</span>
+<span style="color: #666666; font-style: italic;">//  BT RX to Arduino pin 3 (through a voltage divider)</span>
+<span style="color: #666666; font-style: italic;">//  BT TX to Arduino pin 2 (no need voltage divider)</span>
+<span style="color: #666666; font-style: italic;">//</span>
+<span style="color: #666666; font-style: italic;">//  When a command is entered in the serial monitor on the computer </span>
+<span style="color: #666666; font-style: italic;">//  the Arduino will relay it to the bluetooth module and display the result.</span>
+<span style="color: #666666; font-style: italic;">//</span>
+<span style="color: #666666; font-style: italic;">//  These HC-06 modules require capital letters and no line ending</span>
+<span style="color: #666666; font-style: italic;">//</span>
+&nbsp;
+<span style="color: #339933;">#include &lt;SoftwareSerial.h&gt;</span>
+SoftwareSerial BTSerial<span style="color: #009900;">(</span><span style="color: #0000dd;">2</span><span style="color: #339933;">,</span> <span style="color: #0000dd;">3</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// RX | TX</span>
+&nbsp;
+<span style="color: #993333;">void</span> setup<span style="color: #009900;">(</span><span style="color: #009900;">)</span> 
+<span style="color: #009900;">{</span>
+    Serial.<span style="color: #202020;">begin</span><span style="color: #009900;">(</span><span style="color: #0000dd;">9600</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+    Serial.<span style="color: #202020;">println</span><span style="color: #009900;">(</span><span style="color: #ff0000;">"Arduino with HC-06 is ready"</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #666666; font-style: italic;">// HC-06 default baud rate is 9600</span>
+    BTSerial.<span style="color: #202020;">begin</span><span style="color: #009900;">(</span><span style="color: #0000dd;">9600</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>  
+    Serial.<span style="color: #202020;">println</span><span style="color: #009900;">(</span><span style="color: #ff0000;">"BTserial started at 9600"</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">}</span>
+&nbsp;
+<span style="color: #993333;">void</span> loop<span style="color: #009900;">(</span><span style="color: #009900;">)</span>
+<span style="color: #009900;">{</span>
+&nbsp;
+  <span style="color: #666666; font-style: italic;">// Keep reading from HC-06 and send to Arduino Serial Monitor</span>
+  <span style="color: #b1b100;">if</span> <span style="color: #009900;">(</span>BTSerial.<span style="color: #202020;">available</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span>
+    Serial.<span style="color: #202020;">write</span><span style="color: #009900;">(</span>BTSerial.<span style="color: #202020;">read</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+&nbsp;
+  <span style="color: #666666; font-style: italic;">// Keep reading from Arduino Serial Monitor and send to HC-06</span>
+  <span style="color: #b1b100;">if</span> <span style="color: #009900;">(</span>Serial.<span style="color: #202020;">available</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span>
+  BTSerial.<span style="color: #202020;">write</span><span style="color: #009900;">(</span>Serial.<span style="color: #202020;">read</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">}</span></pre></td></tr></tbody></table></div>
+
+<p>HC-06 modules start in AT mode so we can start entering commands as soon as we open the serial monitor. Remember that the HC-06 requires commands to be upper case and does not want new lines or carriage returns so set “No line endings” at the bottom of the serial monitor window. Open the serial monitor on the host computer and confirm you are in AT mode by typing “AT” (no quotes). You should get a reply of “OK”</p>
+<p><a href="http://www.martyncurrey.com/wp-content/uploads/2015/07/HC-05_to_HC-06-HC-06_AT.jpg" class="fancybox"><img src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06-HC-06_AT-584x218.jpg" alt="HC-05_to_HC-06-HC-06_AT" width="584" height="218" class="alignnone size-medium wp-image-2109"></a></p>
+<p>We don’t need to do much to prepare the HC-06. Just make sure the password is the same as the HC-05.<br>
+To change the password/PIN to 1234 enter “AT+PSWD1234″ (no quotes) and click Send</p>
+<p><a href="http://www.martyncurrey.com/wp-content/uploads/2015/07/HC-05_to_HC-06-HC-06_setPin.jpg" class="fancybox"><img src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06-HC-06_setPin-584x218.jpg" alt="HC-05_to_HC-06-HC-06_setPin" width="584" height="218" class="alignnone size-medium wp-image-2110"></a></p>
+<p>&nbsp;</p>
+<h2>Pairing and Binding</h2>
+<p>At this point we should have the HC-06 waiting for a connection. The password/PIN is 1234. </p>
+<p>The HC-05 should be in “full” AT mode. If you are not sure what this is see <a href="http://www.martyncurrey.com/arduino-with-hc-05-bluetooth-module-at-mode/" title="Arduino with HC-05 (ZS-040) Bluetooth module – AT MODE">Arduino with HC-05 (ZS-040) Bluetooth module – AT MODE</a></p>
+<p>The steps to connect to the HC-06 are<br>
+1. set the same baud rate on both devices.<br>
+2. make sure the passwords on the HC-05 and the HC-06 are the same<br>
+3. find the address of the HC-06<br>
+4. pair the HC-05 with the HC-06<br>
+5. bind the HC-06 to the HC-05<br>
+6. set the HC-05 to only connect with paired devices<br>
+7. link to the HC-06</p>
+<h3>1. Set the same baud rate on both devices.</h3>
+<p>Set the communication mode baud rate to 9600 on the HC-05 and the HC-06. I have already done this.<br>
+This is only for the purpose of this example. Once you have got everything working you can change the baud rates.</p>
+<h3>2. Make sure the passwords on the HC-05 and the HC-06 are the same</h3>
+<p>We have already set the passwords.</p>
+<h3>3. Find the address of the HC-06</h3>
+<p>You can do this with an Android device or you can do it with the HC-05. Here is how to it with the HC-05.</p>
+<p>Make sure the HC-05 is in AT mode and enter the following commands.<br>
+AT+RMAAD<br>
+AT+ROLE=1<br>
+AT+RESET<br>
+<a href="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06-HC-05_Connect01.jpg" class="fancybox"><img src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06-HC-05_Connect01.jpg" alt="HC-05_to_HC-06-HC-05_Connect01" width="407" height="319" class="alignnone size-full wp-image-2124"></a></p>
+<p>AT+RMAAD clears any previously paired devices.<br>
+AT+ROLE=1 puts the HC-05 in Master Mode<br>
+AT+RESET reset the HC-05. This is sometimes needed after changing roles. </p>
+<p>Now enter the following<br>
+AT+CMODE=0<br>
+AT+INQM=0,5,9<br>
+AT+INIT<br>
+AT+INQ</p>
+<p>AT+INQM=0,5,9, AT+INIT and AT+INQ require pin 34 to be HIGH. If pin 34 is not HIGH then you will not receive any reply from these commands. No message, no error message.<br>
+<a href="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06-HC-05_Connect02.jpg" class="fancybox"><img src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06-HC-05_Connect02.jpg" alt="HC-05_to_HC-06-HC-05_Connect02" width="407" height="504" class="alignnone size-full wp-image-2128"></a></p>
+<p>AT+CMODE=0 allows the HC-05 to connect to any device<br>
+AT+INQM=0,5,9 set inquiry to search for up to 5 devices for 9 seconds<br>
+AT+INIT initiates the SPP profile. If SPP is already active you will get an error(17) which you can ignore.<br>
+AT+INQ searches for other Bluetooth devices.</p>
+<p>In the above screen shot you can see that the HC-05 found 2 Bluetooth devices.<br>
++INQ:A854:B2:3FB035,8043C,7FFF<br>
++INQ:3014:10:171179,1F00,7FFF<br>
+One of these is the HC-06. To find out we can use the AT+RNAME? command. </p>
+<p>AT+INQ returns 3 values, the first is the address and this is the value we need. The second value is the class of the device and the third value is the signal strength (RSSI).<br>
+AT+INQ will only work if the HC-05 is in Master Mode and after a AT+INIT command.</p>
+<p>To get the name of the found devices we use the AT+RNAME?<addr> command. The address is the first field returned by AT+INQ; A854:B2:3FB035 and 3014:10:171179.</addr></p>
+<p>When we enter the address we need to replace the colons with commas. The format is AT+RNAME?A854,B2,3FB035 and AT+RNAME?3014,10,171179<br>
+Of course, you would use the address of your HC-06.<br>
+<a href="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06-HC-05_Connect03.jpg" class="fancybox"><img src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06-HC-05_Connect03.jpg" alt="HC-05_to_HC-06-HC-05_Connect03" width="407" height="504" class="alignnone size-full wp-image-2129"></a><br>
+You can see from the above. A854:B2:3FB035 is my TV and 3014:10:171179 is the HC-06. </p>
+<p>Now we have the address of the HC-06 we can finish making the connection.</p>
+<h3>4. Pair the HC-05 with the HC-06</h3>
+<p>To pair we use the AT+PAIR=&lt;addr&gt;,&lt;timeout&gt; command.<br>
+Enter “AT+PAIR=3014,10,171179,9″ (no quotes)<br>
+If the HC-05 cannot pair with the HC-06 within 9 seconds you will get an error message. If the pairing is successful you will get an “OK”</p>
+<h3>5. Bind the HC-06 to the HC-05</h3>
+<p>Bind using “AT+BIND=3014,10,171179″</p>
+<h3>6. Set the HC-05 to only connect with paired devices</h3>
+<p>We do this with the CMODE command – “AT+CMODE=1″</p>
+<h3>7. Link to the HC-06</h3>
+<p>Use the link command AT+LINK=&lt;addr&gt;<br>
+In my case “AT+LINK=3014,10,171179″. If all is well you will get the “OK” reply.</p>
+<p><a href="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06-HC-05_Connect04.jpg" class="fancybox"><img src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/HC-05_to_HC-06-HC-05_Connect04.jpg" alt="HC-05_to_HC-06-HC-05_Connect04" width="407" height="593" class="alignnone size-full wp-image-2131"></a></p>
+<p>The LED on the HC-05 should have 2 quick blinks every 2 seconds (or so).<br>
+The LED on the HC-06 should be on (not blinking).<br>
+You have now connected the HC-05 and the HC-06</p>
+<p>Now that the connection has been formed, the HC-05 will automatically connect to the HC-06 every time they are turned on.</p>
+<p>Once the connection is formed the HC-05 will switch to communication mode. If you want to continue with AT Mode then you will need to reset the module with pin 34 HIGH or with the button switch closed.</p>
+<p>&nbsp;<br>
+&nbsp;</p>
+<h2>Test The Connection</h2>
+<p>On the HC-05, remove the connection to pin 34 and upload the following sketch to the Arduino connected to it. The sketch opens the BTserial at 9600 for communication mode.</p>
+
+<div class="wp_syntax"><table><tbody><tr><td class="code"><pre class="c" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">// Basic Bluetooth sketch HC-05_03_9600</span>
+<span style="color: #666666; font-style: italic;">// Connect the HC-05 module and communicate using the serial monitor</span>
+<span style="color: #666666; font-style: italic;">//</span>
+<span style="color: #666666; font-style: italic;">// The HC-05 defaults to commincation mode when first powered on.</span>
+<span style="color: #666666; font-style: italic;">// Needs to be placed in to AT mode</span>
+<span style="color: #666666; font-style: italic;">// After a factory reset the default baud rate for communication mode is 38400</span>
+<span style="color: #666666; font-style: italic;">//</span>
+<span style="color: #666666; font-style: italic;">//</span>
+<span style="color: #666666; font-style: italic;">//  Pins</span>
+<span style="color: #666666; font-style: italic;">//  BT VCC to Arduino 5V out. </span>
+<span style="color: #666666; font-style: italic;">//  BT GND to GND</span>
+<span style="color: #666666; font-style: italic;">//  BT RX to Arduino pin 3 (through a voltage divider)</span>
+<span style="color: #666666; font-style: italic;">//  BT TX to Arduino pin 2 (no need voltage divider)</span>
+&nbsp;
+&nbsp;
+<span style="color: #339933;">#include &lt;SoftwareSerial.h&gt;</span>
+SoftwareSerial BTserial<span style="color: #009900;">(</span><span style="color: #0000dd;">2</span><span style="color: #339933;">,</span> <span style="color: #0000dd;">3</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// RX | TX</span>
+<span style="color: #666666; font-style: italic;">// Connect the HC-05 TX to Arduino pin 2 RX. </span>
+<span style="color: #666666; font-style: italic;">// Connect the HC-05 RX to Arduino pin 3 TX through a voltage divider.</span>
+&nbsp;
+<span style="color: #993333;">char</span> c <span style="color: #339933;">=</span> <span style="color: #ff0000;">' '</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #993333;">void</span> setup<span style="color: #009900;">(</span><span style="color: #009900;">)</span> 
+<span style="color: #009900;">{</span>
+    <span style="color: #666666; font-style: italic;">// start the serial communication with the host computer</span>
+    Serial.<span style="color: #202020;">begin</span><span style="color: #009900;">(</span><span style="color: #0000dd;">9600</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+    Serial.<span style="color: #202020;">println</span><span style="color: #009900;">(</span><span style="color: #ff0000;">"Arduino with HC-05 is ready"</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #666666; font-style: italic;">// start communication with the HC-05 using 9600</span>
+    BTserial.<span style="color: #202020;">begin</span><span style="color: #009900;">(</span><span style="color: #0000dd;">9600</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>  
+    Serial.<span style="color: #202020;">println</span><span style="color: #009900;">(</span><span style="color: #ff0000;">"BTserial started at 9600"</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">}</span>
+&nbsp;
+<span style="color: #993333;">void</span> loop<span style="color: #009900;">(</span><span style="color: #009900;">)</span>
+<span style="color: #009900;">{</span>
+&nbsp;
+     <span style="color: #666666; font-style: italic;">// Keep reading from HC-05 and send to Arduino Serial Monitor</span>
+    <span style="color: #b1b100;">if</span> <span style="color: #009900;">(</span>BTserial.<span style="color: #202020;">available</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span>
+    <span style="color: #009900;">{</span>  
+        c <span style="color: #339933;">=</span> BTserial.<span style="color: #202020;">read</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+        Serial.<span style="color: #202020;">write</span><span style="color: #009900;">(</span>c<span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">}</span>
+&nbsp;
+    <span style="color: #666666; font-style: italic;">// Keep reading from Arduino Serial Monitor and send to HC-05</span>
+    <span style="color: #b1b100;">if</span> <span style="color: #009900;">(</span>Serial.<span style="color: #202020;">available</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span>
+    <span style="color: #009900;">{</span>
+        c <span style="color: #339933;">=</span>  Serial.<span style="color: #202020;">read</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+        BTserial.<span style="color: #202020;">write</span><span style="color: #009900;">(</span>c<span style="color: #009900;">)</span><span style="color: #339933;">;</span>  
+    <span style="color: #009900;">}</span>
+&nbsp;
+<span style="color: #009900;">}</span></pre></td></tr></tbody></table></div>
+
+<p>Reset both Arduinos and remove power from the HC-05 and the HC-06</p>
+<p>Power on the HC-06. The LED should be rapidly blinking 5 times per second. This indicates it is waiting for a connection or to be paired.<br>
+Power on the HC-05. The LED will blink a couple of times when first on and then change to a the regular pattern of blinking quickly every couple of seconds.<br>
+The LED on the HC-06 will turn on full time (no blinking).<br>
+The modules are now connected.</p>
+<p>Open the serial monitors and what ever you enter in one will appear the the other and visa versa</p>
+<p>Every time the modules are powered on they should connect. If you find they do not connect then cycle the power to the Arduinos. Sometimes the HC-05 will get stuck trying to make a connection. In this case the LED on the HC-05 will either<br>
+1. quickly blink 3 times every couple of seconds.<br>
+2. blink on/off twice a second.<br>
+This normally happens when the HC-06 is turned off and then back on again without resetting the HC-05.</p>
+<p>The devices seem to connect more quickly when the HC-06 is started first.</p>
+<p>&nbsp;<br>
+&nbsp;</p>
+<h2>Additional information</h2>
+<p>For more information about AT commands look at the <a href="http://elecfreaks.com/store/download/datasheet/Bluetooth/HC-0305%20serail%20module%20AT%20commamd%20set%20201104%20revised.pdf" title="HC-05 user guide" target="_blank">HC-05 user guide</a> or the <a href="https://docs.google.com/file/d/0BxdLxDCD6HidSkRaRTVuNERrQjg/edit" title="EGBT-046S/EGBT-045MS user guide" target="_blank">EGBT-046S/EGBT-045MS user guide</a></p>
+<p>Phillipe Cantin has a similar article <a href="http://phillipecantin.blogspot.hk/2014/08/hc-05-bluetooth-link-with-zero-code.html" target="_blank">here</a> </p>
+<p>&nbsp;<br>
+&nbsp;<br>
+Next step. Get Arduinos talking over Bluetooth. <a href="http://www.martyncurrey.com/arduino-to-arduino-by-bluetooth/">Arduino to Arduino by Bluetooth</a><br>
+&nbsp;<br>
+&nbsp;</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="http://www.martyncurrey.com/category/arduino/" rel="category tag">Arduino</a>, <a href="http://www.martyncurrey.com/category/bluetooth/" rel="category tag">Bluetooth</a> and tagged <a href="http://www.martyncurrey.com/tag/hc-05/" rel="tag">HC-05</a>, <a href="http://www.martyncurrey.com/tag/hc-06/" rel="tag">HC-06</a> by <a href="http://www.martyncurrey.com/author/admin/">Martyn</a>. Bookmark the <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/" title="Permalink to Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06: Pair, Bind, and Link" rel="bookmark">permalink</a>.		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-2098 -->
+
+						<div id="comments">
+	
+	
+			<h2 id="comments-title">
+			54 thoughts on “<span>Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06: Pair, Bind, and Link</span>”		</h2>
+
+		
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1" id="li-comment-3920">
+		<article id="comment-3920" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/f0fe20eb193663b8d4b9ba6821ad78b4" srcset="http://0.gravatar.com/avatar/f0fe20eb193663b8d4b9ba6821ad78b4?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Brian</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-3920"><time datetime="2015-07-26T17:38:40+00:00">July 26, 2015 at 5:38 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Reference: <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/" rel="nofollow">http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/</a></p>
+<p>Hello Martyn,</p>
+<p>Great BT posts. Thanks for your efforts which have made it simple and clear what and how to work these fun and handy modules – HC-05, HC-06 &amp; ZS-040.</p>
+<p>In your more recent post about pairing the HC-05 &amp; HC-06 there are some typos. I’ve shown below. I may have missed others. I also have some suggestions for the article to help the readers, me ;-).</p>
+<p>I have some editing suggestions below:<br>
+Clarifications<br>
+Top of the document after first Arduino code reference/listing you write,<br>
+“The LED on the HC-05… 5 times a second… device is in slave mode.” Rather than Slave Mode – This is actually indicating that the device is ready and waiting to be connected/paired. Not the mode?</p>
+<p>Typos<br>
+Section 7. Link to the slave device<br>
+-&gt; “The LED on the HC-06 should have two quick…” (should be HC-05).<br>
+-&gt; “Now that the connection… HC-05… to the HC-05 every time…” (should be HC-06).</p>
+<p>Reference:<br>
+It would be good to again reference techbitar as base for your AT command code. And if you used his other code for your other code also. I know you referenced him in another blog but, each blog stands alone so it is helpful to have references/statements throughout or begin having a bibliography and footnotes. </p>
+<p>Great layouts on your blogs. I find them easy reads.</p>
+<p>Additions<br>
+* You mention to put the device into AT mode and do not describe how this is done. It would be helpful to add a link to the ‘How to’ of yours.</p>
+<p>* Ref. note to the ZS-040 to hold down the button to gain ‘full’ AT Mode and link to your description of the modes.</p>
+<p>* Method 2 for query of the device address. You give a great tutorial on how to gain a remote devices MAC address from the HC-05. It would be helpful in this blog describing how to setup two (2) BT devices how to simply query the HC-06 device for its address then type it into the HC-05. I did see this in another blog of yours. </p>
+<p>Hint/Tip<br>
+At you connection description where you describe “the HC-06 no blink and HC-05… quickly every couple of seconds…” Add a note that when pairing with another HC-05 or the ZS-040 the two connected device’s LEDs will each quickly blink and pause in unison.</p>
+<p>Side Note:<br>
+If you haven’t yet experimented – The Arduino IDE will run multiple instances of the same version on Windows. You can have the same version of the IDE with multiple instances by simply double clicking on the app icon for several mcu  boards. I’ve been running the IDE this way for a few years. I commonly play with a couple boards at a time.</p>
+<p>Forgive me for my edit/suggestion note not being as complete and clear as your blog. </p>
+<p>Thanks again! Good stuff you have put on the net.</p>
+<p>Best Regards,</p>
+<p>Brian Stott<br>
+Springfield, MO</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=3920#respond" onclick="return addComment.moveForm( &quot;comment-3920&quot;, &quot;3920&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Brian">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-3925">
+		<article id="comment-3925" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-3925"><time datetime="2015-07-27T06:30:42+00:00">July 27, 2015 at 6:30 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi Brian, thanks for the kind words.</p>
+<p>I have started to add clarifications and to make the corrections. Some points I want to double check when I get time.</p>
+<p>I didn’t have a lot of time when I was doing this and obviously didn’t proof read it. I also changed the setup after I started the write up and missed some of the bits that should have been changed.</p>
+<p>While updating I did think about other things I have not tried or have not included. I will try to make further updates at the weekend. This is a regular pattern for me. As I think of new things I will go back end add to old posts.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=3925#respond" onclick="return addComment.moveForm( &quot;comment-3925&quot;, &quot;3925&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-3951">
+		<article id="comment-3951" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/459d599251933784ec337508e97fad1a" srcset="http://1.gravatar.com/avatar/459d599251933784ec337508e97fad1a?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn"><a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/" rel="external nofollow" class="url">ram</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-3951"><time datetime="2015-07-30T17:00:51+00:00">July 30, 2015 at 5:00 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>you said that: “the LED on the HC-05 should have two quick blinks every 2seconds (or so)<br>
+the LED on the HC-06 should be on (NOT BLINKING)<br>
+you have now connected the HC 05 and the HC 06″</p>
+<p>when i paired my master and slave module (both HC -05), they BOTH blink quickly twice every 2seconds.</p>
+<p>what does this mean?<br>
+thank you :)</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=3951#respond" onclick="return addComment.moveForm( &quot;comment-3951&quot;, &quot;3951&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to ram">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-3956">
+		<article id="comment-3956" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-3956"><time datetime="2015-07-31T13:33:29+00:00">July 31, 2015 at 1:33 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Not sure what the 2 blinks on the HC-06 means. On the HC-05 it normally means there is an active connection.</p>
+<p>When doing the above; pairing, binding and linking here are the LED patterns I get.</p>
+<p>Before pairing<br>
+HC-05 – blinks quickly about 5 times per second<br>
+HC-06 – blinks quickly about 5 times per second</p>
+<p>After pairing<br>
+HC-05 – blinks quickly about 5 times per second<br>
+HC-06 – blinks quickly about 5 times per second</p>
+<p>After binding<br>
+HC-05 – blinks quickly about 5 times per second<br>
+HC-06 – blinks quickly about 5 times per second</p>
+<p>After CMODE<br>
+HC-05 – blinks quickly about 5 times per second<br>
+HC-06 – blinks quickly about 5 times per second</p>
+<p>After linking<br>
+HC-05 – blinks quickly 2 times every 2 or 3 seconds<br>
+HC-06 – LED is on (no blinking)</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=3956#respond" onclick="return addComment.moveForm( &quot;comment-3956&quot;, &quot;3956&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-3980">
+		<article id="comment-3980" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/459d599251933784ec337508e97fad1a" srcset="http://1.gravatar.com/avatar/459d599251933784ec337508e97fad1a?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn"><a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/" rel="external nofollow" class="url">ram</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-3980"><time datetime="2015-08-02T14:58:36+00:00">August 2, 2015 at 2:58 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>hi martyn,</p>
+<p>we’re having trouble pairing the modules. i connected the HC 05 (MASTER) to arduino NANO and the another HC 05 (SET AS SLAVE) to arduino MEGA. </p>
+<p>can you write a sketch for the SLAVE module using arduino MEGA?</p>
+<p>thank you :)</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=3980#respond" onclick="return addComment.moveForm( &quot;comment-3980&quot;, &quot;3980&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to ram">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-3985">
+		<article id="comment-3985" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-3985"><time datetime="2015-08-03T23:53:05+00:00">August 3, 2015 at 11:53 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>See the sketch at the bottom of <a href="http://www.martyncurrey.com/using-an-arduino-mega-with-a-hc-05-zs-040-at-mode/" rel="nofollow">http://www.martyncurrey.com/using-an-arduino-mega-with-a-hc-05-zs-040-at-mode/</a></p>
+<p>This assumes the BT module is connected to serial1 at 9600.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=3985#respond" onclick="return addComment.moveForm( &quot;comment-3985&quot;, &quot;3985&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-3989">
+		<article id="comment-3989" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/459d599251933784ec337508e97fad1a" srcset="http://1.gravatar.com/avatar/459d599251933784ec337508e97fad1a?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn"><a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/" rel="external nofollow" class="url">ram</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-3989"><time datetime="2015-08-06T13:47:45+00:00">August 6, 2015 at 1:47 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>hi Martyn,</p>
+<p>sorry for always bothering you but i need some help<br>
+we already paired the 2 bluetooth modules and we tried to test the communication between the modules using the sketch below. The slave module is connected to a 16×2 LCD display.</p>
+<p>everytime we run the sketch, the slave status is “inactive” </p>
+<p>how could we make this active?<br>
+thank you :)</p>
+<p>#include<br>
+#include </p>
+<p>#define rxPin 18<br>
+#define txPin 19<br>
+#define lcd1 30<br>
+#define lcd2 31<br>
+#define lcd3 32<br>
+#define lcd4 33<br>
+#define lcd5 34<br>
+#define lcd6 35<br>
+SoftwareSerial master(rxPin,txPin);<br>
+LiquidCrystal lcd(7,8,9,10,11,12);<br>
+void setup() {<br>
+    Serial.begin(9600);<br>
+    lcd.begin(16,2);<br>
+    master.begin(9600);<br>
+}</p>
+<p>void loop() {<br>
+  master.listen();<br>
+  if(master.isListening()){<br>
+    lcd.setCursor(0,0);<br>
+    lcd.print(“Slave BT Status”);<br>
+    lcd.setCursor(0,1);<br>
+    lcd.print(“ACTIVE”);<br>
+  }<br>
+  else{<br>
+    lcd.setCursor(0,0);<br>
+    lcd.print(“Slave BT Status”);<br>
+    lcd.setCursor(0,1);<br>
+    lcd.print(“INACTIVE”);<br>
+  }</p>
+<p>}</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=3989#respond" onclick="return addComment.moveForm( &quot;comment-3989&quot;, &quot;3989&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to ram">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-3991">
+		<article id="comment-3991" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-3991"><time datetime="2015-08-07T00:19:26+00:00">August 7, 2015 at 12:19 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Break the problem down in to smaller tasks.<br>
+1. get the BT modules talking using the serial monitor<br>
+2. get the LCD working<br>
+3. combine 1 and 2.</p>
+<p>If not already a member, join the Arduino forum. <a href="http://forum.arduino.cc/index.php" rel="nofollow">http://forum.arduino.cc/index.php</a>  </p>
+<p>The forum is a better place to for dealing with code and there are many very helpful people on there.</p>
+<p>After you join the Arduino forum let me know your user name.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=3991#respond" onclick="return addComment.moveForm( &quot;comment-3991&quot;, &quot;3991&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment even depth-3" id="li-comment-3993">
+		<article id="comment-3993" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/459d599251933784ec337508e97fad1a(1)" srcset="http://1.gravatar.com/avatar/459d599251933784ec337508e97fad1a?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/" rel="external nofollow" class="url">ram</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-3993"><time datetime="2015-08-07T14:02:21+00:00">August 7, 2015 at 2:02 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>hi Martyn, </p>
+<p>I post the same question in arduino forum in this site<br>
+<a href="https://forum.arduino.cc/index.php?topic=339637.0" rel="nofollow">https://forum.arduino.cc/index.php?topic=339637.0</a></p>
+<p>my username is Ram05</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=3993#respond" onclick="return addComment.moveForm( &quot;comment-3993&quot;, &quot;3993&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to ram">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-4" id="li-comment-3994">
+		<article id="comment-3994" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/459d599251933784ec337508e97fad1a(1)" srcset="http://1.gravatar.com/avatar/459d599251933784ec337508e97fad1a?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-3993" rel="external nofollow" class="url">ram</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-3994"><time datetime="2015-08-07T15:07:22+00:00">August 7, 2015 at 3:07 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Sorry I posted the wrong link. </p>
+<p>here’s the link to my post<br>
+<a href="http://forum.arduino.cc/index.php?topic=340521.0" rel="nofollow">http://forum.arduino.cc/index.php?topic=340521.0</a></p>
+<p>thank you</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=3994#respond" onclick="return addComment.moveForm( &quot;comment-3994&quot;, &quot;3994&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to ram">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-5" id="li-comment-3995">
+		<article id="comment-3995" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-3995"><time datetime="2015-08-08T01:00:05+00:00">August 8, 2015 at 1:00 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi,</p>
+<p>I have left a message on the Arduino Forum.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=3995#respond" onclick="return addComment.moveForm( &quot;comment-3995&quot;, &quot;3995&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-4079">
+		<article id="comment-4079" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/a0a1e35272678d028035f226a6b4a4e3" srcset="http://1.gravatar.com/avatar/a0a1e35272678d028035f226a6b4a4e3?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Faisal Ahmed</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4079"><time datetime="2015-09-15T06:04:37+00:00">September 15, 2015 at 6:04 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi    thanks for this nice post…….    i could not connect my fc-114 HC-05 to my pc or android      it shows “paired but not connected”  could u please help me in this regard…..</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4079#respond" onclick="return addComment.moveForm( &quot;comment-4079&quot;, &quot;4079&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Faisal Ahmed">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-4080">
+		<article id="comment-4080" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4080"><time datetime="2015-09-15T08:47:54+00:00">September 15, 2015 at 8:47 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>The FC-114 modules use a different firmware. I have some basic guides at: </p>
+<p><a href="http://www.martyncurrey.com/hc-05-fc-114-and-hc-06-fc-114-first-look/" rel="nofollow">http://www.martyncurrey.com/hc-05-fc-114-and-hc-06-fc-114-first-look/</a></p>
+<p><a href="http://www.martyncurrey.com/hc-05-fc-114-and-hc-06-fc-114-part-2-basic-at-commands/" rel="nofollow">http://www.martyncurrey.com/hc-05-fc-114-and-hc-06-fc-114-part-2-basic-at-commands/</a></p>
+<p><a href="http://www.martyncurrey.com/hc-05-fc-114-and-hc-06-fc-114-part-3-master-mode-and-auto-connect/" rel="nofollow">http://www.martyncurrey.com/hc-05-fc-114-and-hc-06-fc-114-part-3-master-mode-and-auto-connect/</a></p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4080#respond" onclick="return addComment.moveForm( &quot;comment-4080&quot;, &quot;4080&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href="http://www.martyncurrey.com/quick-links/" rel="external nofollow" class="url">Quick Links | Martyn Currey</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-4243">
+		<article id="comment-4243" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/ff76c6116825a0c9d33d2ede75d883d7" srcset="http://0.gravatar.com/avatar/ff76c6116825a0c9d33d2ede75d883d7?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Mihai M</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4243"><time datetime="2015-10-13T08:02:04+00:00">October 13, 2015 at 8:02 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hy Martyn<br>
+Nice and useful blog you have.<br>
+I want to connect an BT (as master) with and Android smart-phone (as slave)<br>
+I followed you steps (RMAAD, ROLE,RESET,INIT,…,PAIR,BIND), everything is OK except LINK step which always finalize with FAIL and the BT enters in PAIRING phase.<br>
+What is wrong ?</p>
+<p>Thanks you and all the best</p>
+<p>Mihai</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4243#respond" onclick="return addComment.moveForm( &quot;comment-4243&quot;, &quot;4243&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Mihai M">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-4267">
+		<article id="comment-4267" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4267"><time datetime="2015-10-17T03:10:29+00:00">October 17, 2015 at 3:10 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi,<br>
+I haven’t tried this but I suspect it is a problem with the PIN/pass code.<br>
+The Bluetooth module doesn’t have the facility to enter a PIN when pairing. Try setting the PIN codes for the Android phone and the Bluetooth module to the same number.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4267#respond" onclick="return addComment.moveForm( &quot;comment-4267&quot;, &quot;4267&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-4280">
+		<article id="comment-4280" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/da820997abe476e0fae281b69924b4eb" srcset="http://1.gravatar.com/avatar/da820997abe476e0fae281b69924b4eb?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Mohammed</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4280"><time datetime="2015-10-23T10:45:24+00:00">October 23, 2015 at 10:45 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Thank for your post, I want to do the same using 2 HC05.<br>
+I followed your instructions, but when it comes to testing I send from the master HC05 “abc” but I received strange strings in HC05 salve!!<br>
+I set the baud rate  to 38400 in both “buBTserial.begin(38400);”<br>
+I also get both HC05 blinking twice every 2 seconds when they are paired.</p>
+<p>Any idea?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4280#respond" onclick="return addComment.moveForm( &quot;comment-4280&quot;, &quot;4280&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Mohammed">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-4286">
+		<article id="comment-4286" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4286"><time datetime="2015-10-24T11:12:28+00:00">October 24, 2015 at 11:12 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>The only way I can replicate this is when I have one of the baud rates set wrong in one of the Arduino sketches or when the baud rate is very fast.</p>
+<p>Double check that you start software serial at the same baud rate in both sketches.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4286#respond" onclick="return addComment.moveForm( &quot;comment-4286&quot;, &quot;4286&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-3" id="li-comment-4287">
+		<article id="comment-4287" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/da820997abe476e0fae281b69924b4eb(1)" srcset="http://1.gravatar.com/avatar/da820997abe476e0fae281b69924b4eb?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn">Mohammed</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4287"><time datetime="2015-10-24T12:27:49+00:00">October 24, 2015 at 12:27 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Thanks ,,, fixed it :)</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4287#respond" onclick="return addComment.moveForm( &quot;comment-4287&quot;, &quot;4287&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Mohammed">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-4359">
+		<article id="comment-4359" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/b2aadf0537a75da7ef729b280c2300fb" srcset="http://2.gravatar.com/avatar/b2aadf0537a75da7ef729b280c2300fb?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Newbie</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4359"><time datetime="2015-11-12T18:10:44+00:00">November 12, 2015 at 6:10 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>weasdasda</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4359#respond" onclick="return addComment.moveForm( &quot;comment-4359&quot;, &quot;4359&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Newbie">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-4564">
+		<article id="comment-4564" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/fc493a208faf2f17147c0cae3efc73f0" srcset="http://0.gravatar.com/avatar/fc493a208faf2f17147c0cae3efc73f0?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Bilal</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4564"><time datetime="2015-12-26T11:31:46+00:00">December 26, 2015 at 11:31 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi,<br>
+Is it really necessary to make one device master and other slave ?<br>
+I want to make an IPS and i want both my bluetooths to return RSSI values of  each other and I guess slave can’t return RSSI values.<br>
+I’ve searched everywhere but couldn’t find the solution<br>
+Can you please help ?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4564#respond" onclick="return addComment.moveForm( &quot;comment-4564&quot;, &quot;4564&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Bilal">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-4848">
+		<article id="comment-4848" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/bfb4ee60c879a4849a104e53a4530108" srcset="http://2.gravatar.com/avatar/bfb4ee60c879a4849a104e53a4530108?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">bhuvaneshnick</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4848"><time datetime="2016-02-13T06:23:06+00:00">February 13, 2016 at 6:23 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>hi, if u having trouble in making  into AT mode of HC-05 (ZS-040)(especiall if one having en/wakeup up pin instead of key pin). Follow they bellow procedure<br>
+Power off HC-05 module.<br>
+Press and hold small button above EN pin.<br>
+Power on and keep pressing small button.<br>
+Small LED should start to blink slowly about once every 2 seconds.</p>
+<p>for more info visit below site:<br>
+<a href="http://abratukhin.blogspot.in/2015/04/connect-atmega328-with-hc-05-zs-040.html" rel="nofollow">http://abratukhin.blogspot.in/2015/04/connect-atmega328-with-hc-05-zs-040.html</a></p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4848#respond" onclick="return addComment.moveForm( &quot;comment-4848&quot;, &quot;4848&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to bhuvaneshnick">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-4862">
+		<article id="comment-4862" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/351954da35503a82e4c02f3e49acbdfb" srcset="http://0.gravatar.com/avatar/351954da35503a82e4c02f3e49acbdfb?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">JANE</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4862"><time datetime="2016-02-16T05:27:43+00:00">February 16, 2016 at 5:27 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>hello your post is great helpful to us thank you<br>
+i want to ask you sth’<br>
+im using two hc-06s.<br>
+is it ok to use same with your scetch</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4862#respond" onclick="return addComment.moveForm( &quot;comment-4862&quot;, &quot;4862&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to JANE">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-4865">
+		<article id="comment-4865" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4865"><time datetime="2016-02-16T08:18:09+00:00">February 16, 2016 at 8:18 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Unfortunately no.</p>
+<p>The HC-06 is a slave only device. It cannot make a connection to another bluetooth device it can only accept a connection.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4865#respond" onclick="return addComment.moveForm( &quot;comment-4865&quot;, &quot;4865&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-4973">
+		<article id="comment-4973" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/47cee1839f7d5e535b38f1686b8b467f" srcset="http://1.gravatar.com/avatar/47cee1839f7d5e535b38f1686b8b467f?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Kacie</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4973"><time datetime="2016-02-29T21:56:19+00:00">February 29, 2016 at 9:56 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Thank you very much for this helpful tutorial.<br>
+ i connected my two module hc05 one on master mode the other on slave mode. My problem is that the slave one blinks like the master one: two times every two seconds. Is it really important ?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4973#respond" onclick="return addComment.moveForm( &quot;comment-4973&quot;, &quot;4973&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Kacie">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-4976">
+		<article id="comment-4976" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-4976"><time datetime="2016-03-01T04:58:04+00:00">March 1, 2016 at 4:58 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>It’s not important. My examples above use a HC-06 as the slave. The HC-06 has different LED blinks.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=4976#respond" onclick="return addComment.moveForm( &quot;comment-4976&quot;, &quot;4976&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-5005">
+		<article id="comment-5005" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/a427f8fa27eb775688b35fc4636eea5f" srcset="http://1.gravatar.com/avatar/a427f8fa27eb775688b35fc4636eea5f?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Amarnath</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5005"><time datetime="2016-03-04T10:14:47+00:00">March 4, 2016 at 10:14 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>sir , I am paired both HC-05 Bluetooth modules and when sending data it is showing in unknown letters like this ô ö</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5005#respond" onclick="return addComment.moveForm( &quot;comment-5005&quot;, &quot;5005&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Amarnath">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-5009">
+		<article id="comment-5009" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5009"><time datetime="2016-03-05T01:33:11+00:00">March 5, 2016 at 1:33 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>This is normally due to an incorrect baud rate. Check both modules and make sure they are both working individually.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5009#respond" onclick="return addComment.moveForm( &quot;comment-5009&quot;, &quot;5009&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-5013">
+		<article id="comment-5013" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/e9e5d4cc5021ea6b70beeeb7d43bb599" srcset="http://2.gravatar.com/avatar/e9e5d4cc5021ea6b70beeeb7d43bb599?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn"><a href="http://www.fander.it/" rel="external nofollow" class="url">Manuel</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5013"><time datetime="2016-03-05T13:57:44+00:00">March 5, 2016 at 1:57 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi Martyn,<br>
+nice tutorial!<br>
+I was wondering how can I make the connection istantaneous. I have the HC-06 that has to disappear for 30 minutes and then it has to reconnect to the HC-05. How can I make the connection time shorter? Is there a way?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5013#respond" onclick="return addComment.moveForm( &quot;comment-5013&quot;, &quot;5013&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Manuel">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-5034">
+		<article id="comment-5034" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/83bc77a4fb382ea7d1c57c2ee750d80d" srcset="http://2.gravatar.com/avatar/83bc77a4fb382ea7d1c57c2ee750d80d?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">ValKo</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5034"><time datetime="2016-03-11T08:44:01+00:00">March 11, 2016 at 8:44 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi Martyncurrey,<br>
+In this “+INQ:3014:10:171179,1F00,7FFF”. What is RSSI and how to convert them to distance?<br>
+Thank you.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5034#respond" onclick="return addComment.moveForm( &quot;comment-5034&quot;, &quot;5034&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to ValKo">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-5036">
+		<article id="comment-5036" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5036"><time datetime="2016-03-11T12:31:22+00:00">March 11, 2016 at 12:31 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>RSSI is the signal strength as a percentage. Unfortunately RSSI is not a reliable way to gauge distance on Android devices.</p>
+<p>Take a look at <a href="http://blog.bluetooth.com/proximity-and-rssi/" rel="nofollow">http://blog.bluetooth.com/proximity-and-rssi/</a> this will give you a basic understanding.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5036#respond" onclick="return addComment.moveForm( &quot;comment-5036&quot;, &quot;5036&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment even depth-3" id="li-comment-5105">
+		<article id="comment-5105" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/83bc77a4fb382ea7d1c57c2ee750d80d(1)" srcset="http://2.gravatar.com/avatar/83bc77a4fb382ea7d1c57c2ee750d80d?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn">ValKo</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5105"><time datetime="2016-03-23T09:31:34+00:00">March 23, 2016 at 9:31 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Thanks for your help.<br>
+I got it.<br>
+Another question. I have RSSI FFC0, and how can I convert that to dBm.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5105#respond" onclick="return addComment.moveForm( &quot;comment-5105&quot;, &quot;5105&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to ValKo">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-5143">
+		<article id="comment-5143" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/8965445dafde261235c5fe9d2f3d509e" srcset="http://2.gravatar.com/avatar/8965445dafde261235c5fe9d2f3d509e?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Himanshu Garg</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5143"><time datetime="2016-03-31T13:50:14+00:00">March 31, 2016 at 1:50 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi Martin,<br>
+actually i have successfully paired the two, but when i check it using code it is giving values in a pattern when i ask for a single value.. plz help!!</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5143#respond" onclick="return addComment.moveForm( &quot;comment-5143&quot;, &quot;5143&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Himanshu Garg">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-5170">
+		<article id="comment-5170" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5170"><time datetime="2016-04-06T08:59:35+00:00">April 6, 2016 at 8:59 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>If the characters appear to be random garbage or a pattern of irregular characters then you are likely to have an incorrect baud rate between one of the Arduinos and the BT module attached to it.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5170#respond" onclick="return addComment.moveForm( &quot;comment-5170&quot;, &quot;5170&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-5254">
+		<article id="comment-5254" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/82f80764d49ff040f45c5f05ead2e6b5" srcset="http://2.gravatar.com/avatar/82f80764d49ff040f45c5f05ead2e6b5?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Mike</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5254"><time datetime="2016-04-17T16:13:17+00:00">April 17, 2016 at 4:13 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Your post on connecting the HC-05 and HC-06 was very  helpful, everywhere I have looked they just show you how to connect them physically and a quick glance at some AT commands. I should be able to use this to connect two HC-06’s ? My next question  is what would i have to do to get an input (toggle switch, turning it off and on as needed) from one to turn on a LED on the other?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5254#respond" onclick="return addComment.moveForm( &quot;comment-5254&quot;, &quot;5254&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Mike">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-5256">
+		<article id="comment-5256" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5256"><time datetime="2016-04-18T00:07:49+00:00">April 18, 2016 at 12:07 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi,</p>
+<p>you cannot use 2 HC-06s. At least one of the BT modules needs to be a HC-05.</p>
+<p>HC-06s are slave device only. HC-05s can be master or slave. Only master devices can make a connection.</p>
+<p>For remote control of an LED have a look at <a href="http://www.martyncurrey.com/arduino-to-arduino-by-bluetooth/" rel="nofollow">http://www.martyncurrey.com/arduino-to-arduino-by-bluetooth/</a></p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5256#respond" onclick="return addComment.moveForm( &quot;comment-5256&quot;, &quot;5256&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-5265">
+		<article id="comment-5265" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/0f51f7bd4e87fd6d7b0b9a57632ecf2a" srcset="http://0.gravatar.com/avatar/0f51f7bd4e87fd6d7b0b9a57632ecf2a?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Mahesh Padmanabh</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5265"><time datetime="2016-04-19T03:21:13+00:00">April 19, 2016 at 3:21 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hello Martyn,</p>
+<p>I have successfully paired both the devices but there is no data being sent. I checked it in the serial monitor and I have the baud rate set correctly. Can you tell me what this issue could be? I am stuck with my project.<br>
+Thanks in advance.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5265#respond" onclick="return addComment.moveForm( &quot;comment-5265&quot;, &quot;5265&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Mahesh Padmanabh">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-5268">
+		<article id="comment-5268" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5268"><time datetime="2016-04-19T05:31:27+00:00">April 19, 2016 at 5:31 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Have a look at <a href="http://www.martyncurrey.com/arduino-to-arduino-by-bluetooth/" rel="nofollow">http://www.martyncurrey.com/arduino-to-arduino-by-bluetooth/</a></p>
+<p>It is always worth double checking the baud rates, double checking the connections and if using a voltage divider check the resistor values and make sure you have them the right way around.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5268#respond" onclick="return addComment.moveForm( &quot;comment-5268&quot;, &quot;5268&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-5314">
+		<article id="comment-5314" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/5c36182f3c37140bab0c3b06cd33d21d" srcset="http://2.gravatar.com/avatar/5c36182f3c37140bab0c3b06cd33d21d?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Vinay</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5314"><time datetime="2016-04-25T06:20:53+00:00">April 25, 2016 at 6:20 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Dear sir,<br>
+i am currently doing my project based on BLE, am not getting OK response by serial monitor when i enter the AT command like AT+CMODE, AT+BIND and AT+LINK . so please give  me the solution for the above problem sir.</p>
+<p>Thank you in advance</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5314#respond" onclick="return addComment.moveForm( &quot;comment-5314&quot;, &quot;5314&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Vinay">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-5316">
+		<article id="comment-5316" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5316"><time datetime="2016-04-25T13:14:37+00:00">April 25, 2016 at 1:14 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Sorry, I am not familiar with BLE yet. I have a couple of modules but have never used them.</p>
+<p>Get the model number of your module and then search online for the manual and/or instructions.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5316#respond" onclick="return addComment.moveForm( &quot;comment-5316&quot;, &quot;5316&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-3" id="li-comment-5322">
+		<article id="comment-5322" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/5c36182f3c37140bab0c3b06cd33d21d(1)" srcset="http://2.gravatar.com/avatar/5c36182f3c37140bab0c3b06cd33d21d?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn">vinay</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5322"><time datetime="2016-04-26T06:23:56+00:00">April 26, 2016 at 6:23 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>sir even am not getting response for HC 05 device also, i tried so many times with HC 05</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5322#respond" onclick="return addComment.moveForm( &quot;comment-5322&quot;, &quot;5322&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to vinay">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-4" id="li-comment-5324">
+		<article id="comment-5324" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5324"><time datetime="2016-04-26T07:28:12+00:00">April 26, 2016 at 7:28 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>You really need to find the make and or model. This will then give you a better chance of finding information.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5324#respond" onclick="return addComment.moveForm( &quot;comment-5324&quot;, &quot;5324&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-5336">
+		<article id="comment-5336" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/0d00a4883c9393c851331a35944e6fb5" srcset="http://0.gravatar.com/avatar/0d00a4883c9393c851331a35944e6fb5?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">sriram</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5336"><time datetime="2016-04-28T07:20:02+00:00">April 28, 2016 at 7:20 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Thank you for the post. It is very helpful. Now my hc 05 and 06 are being connected, but the communication is only one sided. if i write in the slave it does not appear in the  master but when i do the reverse.i.e, write in the master i get it in slave. help me pls.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5336#respond" onclick="return addComment.moveForm( &quot;comment-5336&quot;, &quot;5336&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to sriram">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-5379">
+		<article id="comment-5379" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5379"><time datetime="2016-05-04T16:13:51+00:00">May 4, 2016 at 4:13 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>This sounds like a wiring or connection problem.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5379#respond" onclick="return addComment.moveForm( &quot;comment-5379&quot;, &quot;5379&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-5431">
+		<article id="comment-5431" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/25336a8de6d1e1a40db55ead41a1359f" srcset="http://2.gravatar.com/avatar/25336a8de6d1e1a40db55ead41a1359f?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Faith</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5431"><time datetime="2016-05-11T07:06:47+00:00">May 11, 2016 at 7:06 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>can i connect 2 bluetooth module hc-06- hc-06 with 2 different arduino uno  board ? please i need help if it is possible.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5431#respond" onclick="return addComment.moveForm( &quot;comment-5431&quot;, &quot;5431&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Faith">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-5435">
+		<article id="comment-5435" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5435"><time datetime="2016-05-11T11:55:13+00:00">May 11, 2016 at 11:55 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>no you can’t. One of the modules has to be a HC-05.</p>
+<p>HC-06 is slave only and cannot start a connection.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5435#respond" onclick="return addComment.moveForm( &quot;comment-5435&quot;, &quot;5435&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-5488">
+		<article id="comment-5488" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/7df4f5d371adfc0f9074e11065fb1c64" srcset="http://1.gravatar.com/avatar/7df4f5d371adfc0f9074e11065fb1c64?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Jean</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5488"><time datetime="2016-05-17T14:46:31+00:00">May 17, 2016 at 2:46 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>hi i have a problem. i have sucessfully connect both the hc05 and hc 06 i can send from one to the other but i want the master to send automatically data from a photo resistor and when i receive it on the slave i have some weird characters. if anyone can help me it will be nice.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5488#respond" onclick="return addComment.moveForm( &quot;comment-5488&quot;, &quot;5488&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Jean">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-5494">
+		<article id="comment-5494" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5494"><time datetime="2016-05-18T04:46:19+00:00">May 18, 2016 at 4:46 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Weird characters are normally a sign of a wrong baud rate somewhere of misinterpreting numeric data as ascii (45 instead of “45”).</p>
+<p>Double check the baud rates the Bluetooth modules are using for communication mode and ensure the Arduino sketches are using the same.</p>
+<p>The double check how you are sending and receiving the data. Are you using the same data type at both ends.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5494#respond" onclick="return addComment.moveForm( &quot;comment-5494&quot;, &quot;5494&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-5873">
+		<article id="comment-5873" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/7b046e22a7f635209b570f56fcd488c6" srcset="http://1.gravatar.com/avatar/7b046e22a7f635209b570f56fcd488c6?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Najeeb</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5873"><time datetime="2016-08-01T05:18:14+00:00">August 1, 2016 at 5:18 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hai .i wish to control 4 bluetooth module with 1 master module, is it possible.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5873#respond" onclick="return addComment.moveForm( &quot;comment-5873&quot;, &quot;5873&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Najeeb">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-5874">
+		<article id="comment-5874" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5874"><time datetime="2016-08-01T05:28:22+00:00">August 1, 2016 at 5:28 am</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>yes it is but not all at the same time. You need to connect to them one at a time.<br>
+Connect to BT #1. Get data. Close connection<br>
+Connect to BT #2. Get data. Close connection<br>
+Connect to BT #3. Get data. Close connection<br>
+Connect to BT #4. Get data. Close connection</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5874#respond" onclick="return addComment.moveForm( &quot;comment-5874&quot;, &quot;5874&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href="http://enjinia.de/de/2016/07/31/making-the-goggles-for-the-wrench-cosplay/" rel="external nofollow" class="url">LED Brille für das Wrench Cosplay – Enjinia</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-5966">
+		<article id="comment-5966" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/a142c39eb1759c636193d2dc9ceb9c98" srcset="http://1.gravatar.com/avatar/a142c39eb1759c636193d2dc9ceb9c98?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Marcio</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5966"><time datetime="2016-08-25T13:08:45+00:00">August 25, 2016 at 1:08 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Ok I got this to work.  Now what if the other side is not another arduino with a bt module running the same code but rather a relay board with a bluetooth module that you know takes string commands like 100 and 110 to turn off and on a relay.  Is it possible to send it those commands from the arduino with bt?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5966#respond" onclick="return addComment.moveForm( &quot;comment-5966&quot;, &quot;5966&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Marcio">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-5967">
+		<article id="comment-5967" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/2030c0326204231434ecea74cb826581" srcset="http://2.gravatar.com/avatar/2030c0326204231434ecea74cb826581?s=78&amp;d=mm&amp;r=g 2x" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://www.martyncurrey.com/" rel="external nofollow" class="url">Martyn</a></span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5967"><time datetime="2016-08-25T13:23:46+00:00">August 25, 2016 at 1:23 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi Marcio,<br>
+you can send anything you like.</p>
+<p>Have  a look at the Arduino to Ardiono guide. This should be enough to get you started. The example uses start and end markers which, I presume, you will need to remove but the general method of communication will be the same.</p>
+<p><a href="http://www.martyncurrey.com/arduino-to-arduino-by-bluetooth/" rel="nofollow">http://www.martyncurrey.com/arduino-to-arduino-by-bluetooth/</a></p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5967#respond" onclick="return addComment.moveForm( &quot;comment-5967&quot;, &quot;5967&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Martyn">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-5986">
+		<article id="comment-5986" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/6e9c0a317b148f18e451bfb48244d6a5" srcset="http://0.gravatar.com/avatar/6e9c0a317b148f18e451bfb48244d6a5?s=136&amp;d=mm&amp;r=g 2x" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Tugra</span> on <a href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#comment-5986"><time datetime="2016-08-30T21:00:46+00:00">August 30, 2016 at 9:00 pm</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Hi Martyn,<br>
+I’d like to mail to you on this more detail but I really fight hard to make these modules work with Arduino Micro. Not sure why eventhough I use serial1 instead of serial as the microcontroller is different than the standard Arduino; I can not manage to make these work.</p>
+<p>I simply can’t configure HC05 either. Tried different modules but nothing. Same modules work on regular UNO as well. Replaced the micro, no result. Micros are also tested, they are working well on other things too.</p>
+<p>So bottomline, if you had any chance that worked with Micro and these modules. can you please share the simplest AT configuration code you are absolutely sure that made it work with Micro?</p>
+<p>More on this may be found on the topic I already started weeks ago on Arduino forum:<br>
+<a href="http://forum.arduino.cc/index.php?topic=415856.0" rel="nofollow">http://forum.arduino.cc/index.php?topic=415856.0</a></p>
+<p>Thanks in advance.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/?replytocom=5986#respond" onclick="return addComment.moveForm( &quot;comment-5986&quot;, &quot;5986&quot;, &quot;respond&quot;, &quot;2098&quot; )" aria-label="Reply to Tugra">Reply <span>↓</span></a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+		</ol>
+
+		
+		
+	
+							<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.martyncurrey.com/connecting-2-arduinos-by-bluetooth-using-a-hc-05-and-a-hc-06-pair-bind-and-link/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://www.martyncurrey.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required="true" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" aria-describedby="email-notes" aria-required="true" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30"></p>
+<p class="cptch_block"><br>		<input type="hidden" name="cptch_result" value="uu0=">
+		<input type="hidden" name="cptch_time" value="1473954399">
+		<input type="hidden" value="Version: 4.1.3">
+		1 + <input id="cptch_input" class="cptch_input" type="text" autocomplete="off" name="cptch_number" value="" maxlength="2" size="2" aria-required="true" required="required" style="margin-bottom:0;display:inline;font-size: 12px;width: 40px;"> =  seven</p>												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-describedby="form-allowed-tags" aria-required="true" required="required"></textarea></p>						<p class="form-allowed-tags" id="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;s&gt; &lt;strike&gt; &lt;strong&gt; </code></p>
+						<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="2098" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="232c2bec00"></p><input type="hidden" id="sk2_my_js_check1" name="sk2_my_js_check1" value="pgmwu38dgy">
+<input type="hidden" id="sk2_my_js_check2" name="sk2_my_js_check2" value="2969da76ac87a241ad1dccade3e734e5">
+<script type="text/javascript">
+<!--
+	document.write('<input type="hidden" id="sk2_my_js_payload" name="sk2_my_js_payload" value="');
+	document.write(Math.round ( Math.abs(Math.min((((Math.max(Math.round ( Math.abs((1 - 32) / 32)), 21) + Math.round( Math.abs(100*Math.sin(5)) ) ) * 17) * 13), 41))));
+	document.write('" />');
+-->
+</script><input type="hidden" id="sk2_my_js_payload" name="sk2_my_js_payload" value="41">
+<p style="display: none;"></p>					<input type="hidden" id="ak_js" name="ak_js" value="1473954399540"></form>
+							</div><!-- #respond -->
+			
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			<div id="site-generator">
+								<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress</a>
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type="text/javascript" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/form.js"></script>
+<script type="text/javascript" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Connecting 2 Arduinos by Bluetooth using a HC-05 and a HC-06_ Pair, Bind, and Link _ Martyn Currey_files/jquery.form.min.js"></script>
+
+
+<div id="fancybox-tmp" style="padding: 50px;"></div><div id="fancybox-loading" style="display: none;"><div></div></div><div id="fancybox-overlay" style="opacity: 0.3; cursor: pointer; height: 32740px; display: none; background-color: rgb(102, 102, 102);"></div><div id="fancybox-wrap" style="width: 1731px; height: auto; top: 1688px; left: 66px; display: none;"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content" style="border-width: 10px; width: 1711px; height: 729px;"></div><a id="fancybox-close" style="display: none;"></a><div id="fancybox-title" style="display: none;"></div><a href="javascript:;" id="fancybox-left" style="display: none;"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right" style="display: none;"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body></html>
