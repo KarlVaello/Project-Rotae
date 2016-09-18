@@ -15,6 +15,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
+
 #include "Configuration.h"
 #include "Display.h"
 #include "LiveData.h"
@@ -56,16 +58,16 @@ void loop()
   peripherals.peripheralInputReader(ldata);
 
 
-  if (gps.location.isUpdated())
-  {
+  /*if (gps.location.isUpdated())
+    {
     ldata.setLtd(gps.location.lat());
     ldata.setAlt(gps.location.lng());
     if (gps.altitude.isValid()) {
       ldata.setAlt(gps.altitude.meters());
     }
-  }
+    }*/
 
-  dp.DisplayUI(ldata, ch);
+  dp.DisplayUI(ldata,ch);
 
   smartDelay(1000);
 
