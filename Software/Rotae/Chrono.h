@@ -28,9 +28,15 @@
 
 class Chrono {
   public:
+    Chrono();
     Chrono(long int chronoInitTime );
     ~Chrono();
-    void ChronoSplit() ;
+    
+    void setInitTime(long int iniTime);
+    int getInitTime();
+
+
+    void ChronoSplit();
     int getM();
     int getMu();
     int getMd();
@@ -43,6 +49,8 @@ class Chrono {
     int getLu();
     int getLd();
     int getLc();
+
+
 
 
 };

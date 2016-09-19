@@ -72,7 +72,9 @@ void loop()
     }
     }*/
 
-  dp.DisplayUI(ldata, ch);
+
+
+  dp.DisplayUI(ldata);
 
   smartDelay(1000);
 

@@ -40,7 +40,7 @@ class Display {
   public:
     Display();
     ~Display();
-    void DisplayUI(LiveData ld, Chrono ch);
+    void DisplayUI(LiveData ld);
     void DisplayInit();
 };
 

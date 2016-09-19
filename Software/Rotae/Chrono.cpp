@@ -28,11 +28,13 @@
 int m, mu = 0, md = 0;                     //Declaramos las variables que vamos a usar
 int s, su = 0, sd = 0;
 int l, lu = 0, ld = 0, lc = 0;
-long int tiempo, inicio;
+long int tiempo, initTime;
 
-//<<constructor>> 
+//<<constructor>>
+Chrono::Chrono() {
+}
 Chrono::Chrono(long int chronoInitTime) {
-  inicio = chronoInitTime;
+  initTime = chronoInitTime;
 
 }
 //<<destructor>>
@@ -46,7 +48,7 @@ Chrono::~Chrono() {
   And split it on theys digits to help to print it on the screen
 */
 void Chrono::ChronoSplit() {
-  tiempo = millis() - inicio;      //Calculamos el tiempo que paso desde que se activo el sensor start/stop
+  tiempo = millis() - initTime;      //Calculamos el tiempo que paso desde que se activo el sensor start/stop
 
   m = (tiempo / 1000) / 60;           //Calculamos los minutos
   mu = m % 10;                        //Descomponemos los minutos y sacamos el valor de las unidades
@@ -63,6 +65,7 @@ void Chrono::ChronoSplit() {
   //Serial.println(String(m) + ":" + String(s) + ":" + String(l));
 
 }
+
 
 
 int Chrono::getM() {
@@ -97,3 +100,12 @@ int Chrono::getLd() {
 int Chrono::getLc() {
   return lc;
 }
+
+void  Chrono::setInitTime(long int iniTime) {
+  initTime = iniTime;
+}
+int Chrono::getInitTime() {
+  return initTime;
+}
+
+

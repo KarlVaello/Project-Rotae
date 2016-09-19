@@ -22,6 +22,7 @@
 
 
 #include "LiveData.h"
+#include "Chrono.h"
 
 int currentSpeed = 0;
 
@@ -36,7 +37,7 @@ float distanceTraveled_M_Complete = 1.45f; //distance traveled metros
 int distanceTraveled_KM_digits = 0; //distance traveled metros
 int distanceTraveled_M_digits = 0; //distance traveled metros
 
-
+Chrono currentChrono;
 //GPS
 float ltd, lon;
 double alt;
@@ -56,14 +57,6 @@ int LiveData::getCurrentSpeed() {
 void LiveData::setCurrentSpeed(int currentSpeed_IN) {
   currentSpeed = currentSpeed_IN;
 }
-//
-//int LiveData::getLu() {
-//  return  lu;
-//}
-//
-//void LiveData::setLu(int lu_IN) {
-//  lu = lu_IN;
-//}
 
 int LiveData::getCurrentCranksetGear() {
   return currentCranksetGear;
@@ -130,5 +123,10 @@ int LiveData::getDistanceTraveled_M_digits() {
 void LiveData::setDistanceTraveled_M_digits (int distanceTraveled_M_digits_IN  ) {
   distanceTraveled_M_digits = distanceTraveled_M_digits_IN;
 }
+
+Chrono LiveData::getCurrentChrono() {
+  return currentChrono;
+}
+
 
 

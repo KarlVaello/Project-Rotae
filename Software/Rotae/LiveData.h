@@ -24,6 +24,8 @@
 #ifndef LiveData_H
 #define LiveData_H
 
+#include "Chrono.h"
+
 
 class LiveData {
   public:
@@ -63,6 +65,7 @@ class LiveData {
     int getDistanceTraveled_M_digits();
     void setDistanceTraveled_M_digits (int distanceTraveled_M_digits_IN );
 
+    Chrono getCurrentChrono();
 
 
 };
