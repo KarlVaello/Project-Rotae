@@ -24,8 +24,9 @@
 #include "Display.h" //include the declaration for this class
 #include "Configuration.h"
 #include "Chrono.h"
-
 UTFT lcd(ILI9481, 38, 39, 40, 41);
+//UTFT lcd(HX8357C, 38, 39, 40, 41);
+
 URTouch tactil(6, 5, 4, 3, 2);
 
 // Declare which fonts we will be using
@@ -39,16 +40,15 @@ extern uint8_t SevenSegNumFontPlus[];
 extern uint8_t ArialNumFontPlus[];
 extern uint8_t OCR_A_Extended_M[];
 
-
 //Homo 0
 //Chono window 1
-int displayWindow = 1;
+int displayWindow = 0;
 
 extern unsigned short disketteIcon[0x9C4];
 extern unsigned short trashIcon[0xE10];
+
+
 //<<constructor>> setup the LED, make pin 13 an OUTPUT
-
-
 Display::Display() {
 }
 
@@ -66,7 +66,6 @@ void Display::DisplayInit() {
   lcd.InitLCD(PORTRAIT);
   lcd.clrScr();
   tactil.InitTouch(PORTRAIT);
-  tactil.setPrecision(PORTRAIT);
   lcd.fillScr(210, 215, 211);
   lcd.setColor(103, 129, 159);
   lcd.fillRect(0, 0, 480, 20);

@@ -22,14 +22,14 @@
 
 
 #include "Configuration.h"
-#include "Display.h"
+#include "DisplayV2.h"
 #include "LiveData.h"
 #include "PeripheralCommunication.h"
 #include "TinyGPS++.h"
 
 TinyGPSPlus gps;
 
-Display dp;
+DisplayV2 dp;
 LiveData ldata;
 PeripheralCommunication peripherals;
 
@@ -50,7 +50,7 @@ void setup()
 
   //Serial1.begin(9600);
 
-  dp.DisplayInit();
+  dp.DisplayV2Init();
 
 }
 
@@ -73,7 +73,7 @@ void loop()
 
 
 
-  dp.DisplayUI(ldata);
+  dp.DisplayV2UI(ldata);
 
   smartDelay(1000);
 
