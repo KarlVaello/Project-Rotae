@@ -1,96 +1,96 @@
-/*
-   Project Rotae  Copyright (C) 2016  Carlos Vaello
+#include <TFT_ST7735.h> // Graphics and font library for ST7735 driver chip
+#include <SPI.h>
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+TFT_ST7735 tft = TFT_ST7735();  // Invoke library, pins defined in User_Setup.h
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/**
-   @file Rotae.ino
-   @brief Main skecht. Runs everithing.
-   @author Carlos Vaello
-*/
+#define color_background 0xEF9E
+#define color_speed 0x256C
+#define color_a 0x0000
 
 
-#include "Configuration.h"
-#include "DisplayV2.h"
-#include "LiveData.h"
-#include "PeripheralCommunication.h"
-#include "TinyGPS++.h"
+int sensorPin = 3;
 
-TinyGPSPlus gps;
+int currentState_A = 0;
+int currentState_B = 0;
+int lastState = 0;
 
-DisplayV2 dp;
-LiveData ldata;
-PeripheralCommunication peripherals;
+int spinCount = 0;
+float rRueda = 29.5; //INGRESAR radio de la rueda en cm
+float pi = 3.1416;
+float pRueda = 2 * pi * (rRueda / 100); //Calcula Perimetro en metros
+
+int time_A = 0; //tiempo paso de rueda
+int time_B = 0; //timepo paso de rueda
+int diferenceTime = 0;
+float timeHours = 0;
 
 
-long x, y;
-int pantalla;
+int currentSpeed = 0;
+int currentDistance = 0;
 
-String inputDataP;
-
-Chrono ch(millis());
 void setup()
 {
-  Serial.begin(MAIN_SERIAL_BAUDRATE);      // open the serial port at 9600 bps:
+  Serial.begin(9600);
+  Serial.print("Setup");
 
-  peripherals.InitPeriperalCommunication();
+  pinMode(sensorPin, INPUT);
 
-  Serial3.begin(GPS_SERIAL_BAUDRATE);
-
-  //Serial1.begin(9600);
-
-  dp.DisplayV2Init();
-
+  tft.init();
+  tft.setRotation(0);
+  tft.fillScreen(color_background);
+  tft.fillRect(-2, 0, 150, 150, color_background);
+  currentDistance = 0;
+  currentSpeed = 0;
 }
 
 
 void loop()
 {
-  ch.ChronoSplit();
+  //priemra lectura
+  currentState_A = digitalRead(sensorPin);
+  delay(10);
+  //segunda lencuta
+  currentState_B = digitalRead(sensorPin);
 
-  peripherals.peripheralInputReader(ldata);
+  if (currentState_A == currentState_B) {
+    if (currentState_A != lastState) { // diferentes estados actua
+      if (currentState_A == HIGH) {
 
+        spinCount = spinCount + 1; // suma una vuelta
 
-  /*if (gps.location.isUpdated())
-    {
-    ldata.setLtd(gps.location.lat());
-    ldata.setAlt(gps.location.lng());
-    if (gps.altitude.isValid()) {
-      ldata.setAlt(gps.altitude.meters());
+        currentSpeed = velocityCalculations(); // calcualdora de velocidad
+        currentDistance = currentDistance + pRueda;
+
+        //actualización tft
+        tft.setTextColor(color_speed, color_background);
+        tft.fillRect(-2, 20, 130, 50, color_background);
+        tft.setTextSize(1);
+        char copy[3];
+        String(currentSpeed).toCharArray(copy, 3);
+        tft.drawCentreString(copy, 64, 20, 7); // Overwrite the text to clear it7
+        tft.drawCentreString("km/h", 64, 70, 1); // Overwrite the text to clear it
+        tft.drawNumber(currentDistance, 5, 100, 4); // Overwrite the text to clear it
+      }
     }
-    }*/
-
-
-
-  dp.DisplayV2UI(ldata);
-
-  smartDelay(1000);
-
-  peripherals.onlineStatusPerifericalCheck(ldata);
-
+  }
+  lastState = currentState_A; //guardamos el útimo estado
 }
 
-// This custom version of delay() ensures that the gps object
-// is being "fed".
-static void smartDelay(unsigned long ms)
-{
-  /*unsigned long start = millis();
-    do
-    {*/
-  while (Serial3.available()) {
-    gps.encode(Serial3.read());
+
+// funcion que calcula y devuelve la velocidad. en km/h
+int  velocityCalculations() {
+  int speedCalculated;
+  if (spinCount % 2 == 0 ) { // sabemos si la vuelta e spar o impar
+    time_A = millis();
   }
-  //} while (millis() - start < ms);
+  else {
+    time_B = millis();
+  }
+
+  diferenceTime = abs(time_B - time_A); //resta e ultiam vuelta menos la anterior para saber el tiempo transcurrido
+
+  timeHours = (((diferenceTime / 1000.0) / 60.0) / 60.0); //pasamos el tiempo a horas
+  
+  return speedCalculated;
 }
 
